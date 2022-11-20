@@ -19,7 +19,7 @@ namespace WebUngTuyenViecLamIT.User
         String query;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["user"] == null)
+            if (Session["user"] == null && Session["company"] == null)
             {
                 Response.Redirect("Login.aspx");
             }
@@ -35,7 +35,7 @@ namespace WebUngTuyenViecLamIT.User
             if (Request.QueryString["id"] != null)
             {
                 con = new SqlConnection(str);
-                query = "Select * from [User] where UserId = '" + Request.QueryString["id"] + "'";
+                query = "select a.UserName, u.Name, u.Email, u.Mobile,u.Favourite, u.WorksOn,u.Experience, u.Resume, u.Address, u.Country from[User] u, Account a where u.UserId = '" + Request.QueryString["id"] + "'";
                 cmd = new SqlCommand(query, con);
                 con.Open();
                 sdr = cmd.ExecuteReader();
@@ -43,19 +43,15 @@ namespace WebUngTuyenViecLamIT.User
                 {
                     if (sdr.Read())
                     {
-                        txtUserName.Text = sdr["Username"].ToString();
-                        txtFullName.Text = sdr["Name"].ToString();
-                        txtEmail.Text = sdr["Email"].ToString();
-                        txtMobile.Text = sdr["Mobile"].ToString();
-                        txtTenTh.Text = sdr["TenthGrade"].ToString();
-                        txtTweflth.Text = sdr["TwelfthGrade"].ToString();
-                        txtGraduation.Text = sdr["GraduationGrade"].ToString();
-                        txtPostGraduation.Text = sdr["PostGraduationGrade"].ToString();
-                        txtPhd.Text = sdr["Phd"].ToString();
-                        txtWork.Text = sdr["WorksOn"].ToString();
-                        txtExperience.Text = sdr["Experience"].ToString();
-                        txtAdress.Text = sdr["Address"].ToString();
-                        ddlConuntry.SelectedValue = sdr["Country"].ToString();
+                        txtUserName.Text = Session["user"].ToString().Trim();
+                        txtFullName.Text = sdr["Name"].ToString().Trim();
+                        txtEmail.Text = sdr["Email"].ToString().Trim();
+                        txtMobile.Text = sdr["Mobile"].ToString().Trim();
+                        txtFavourite.Text = sdr["Favourite"].ToString().Trim();
+                        txtWork.Text = sdr["WorksOn"].ToString().Trim();
+                        txtExperience.Text = sdr["Experience"].ToString().Trim();
+                        txtAdress.Text = sdr["Address"].ToString().Trim();
+                        ddlConuntry.SelectedValue = sdr["Country"].ToString().Trim();
                     }
                 }
                 else
@@ -76,6 +72,7 @@ namespace WebUngTuyenViecLamIT.User
                 if (Request.QueryString["id"] != null)
                 {
                     string concatQuery = string.Empty;
+                    string userImage = string.Empty;
                     string filePath = string.Empty;
                     //bool isValidToExcute = false;
                     bool isValid = false;
@@ -92,24 +89,34 @@ namespace WebUngTuyenViecLamIT.User
                             concatQuery = string.Empty;
                         }
                     }
+
+                    if (fuUserImage.HasFile)
+                    {
+                        if (Untils.IsValidToExtension(fuUserImage.FileName))
+                        {
+                            userImage = "UserImage=@UserImage,";
+                            isValid = true;
+                        }
+                        else
+                        {
+                            userImage = string.Empty;
+                        }
+                    }
+
                     else
                     {
                         concatQuery = string.Empty;
+                        userImage = string.Empty;
                     }
 
-                    query = @"Update [User] set Username=@Username,Name=@Name,Email=@Email,Mobile=@Mobile,TenthGrade=@TenthGrade,
-                              TwelfthGrade=@TwelfthGrade,GraduationGrade=@GraduationGrade,PostGraduationGrade=@PostGraduationGrade,
-                              Phd=@Phd,WorksOn=@WorksOn,Experience=@Experience," + concatQuery + @"Address=@Address,Country=@Country where UserId=@UserId";
+                    query = @"Update [User] set Name=@Name,Email=@Email,Mobile=@Mobile,
+                              Favourite=@Favourite,WorksOn=@WorksOn,Experience=@Experience," + concatQuery + @"Address=@Address, "+ userImage + @"Country=@Country where UserId=@UserId";
                     cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@Username", txtUserName.Text.Trim());
+                    //cmd.Parameters.AddWithValue("@Username", txtUserName.Text.Trim());
                     cmd.Parameters.AddWithValue("@Name", txtFullName.Text.Trim());
                     cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
                     cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.Trim());
-                    cmd.Parameters.AddWithValue("@TenthGrade", txtTenTh.Text.Trim());
-                    cmd.Parameters.AddWithValue("@TwelfthGrade", txtTweflth.Text.Trim());
-                    cmd.Parameters.AddWithValue("@GraduationGrade", txtGraduation.Text.Trim());
-                    cmd.Parameters.AddWithValue("@PostGraduationGrade", txtPostGraduation.Text.Trim());
-                    cmd.Parameters.AddWithValue("@Phd", txtPhd.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Favourite", txtFavourite.Text.Trim());
                     cmd.Parameters.AddWithValue("@WorksOn", txtWork.Text.Trim());
                     cmd.Parameters.AddWithValue("@Experience", txtExperience.Text.Trim());
                     cmd.Parameters.AddWithValue("@Address", txtAdress.Text.Trim());
@@ -132,7 +139,26 @@ namespace WebUngTuyenViecLamIT.User
                             lblMsg.Text = "Vui lòng lựa chọn file .doc, .docx, .pdf";
                             lblMsg.CssClass = "alert alert-danger";
                         }
-                    } 
+                    }
+
+                    if (fuUserImage.HasFile)
+                    {
+                        if (Untils.IsValidToExtension(fuUserImage.FileName))
+                        {
+                            Guid obj = Guid.NewGuid();
+                            filePath = "CompanyImages/" + obj.ToString() + fuUserImage.FileName;
+                            fuUserImage.PostedFile.SaveAs(Server.MapPath("~/CompanyImages/") + obj.ToString() + fuUserImage.FileName);
+                            cmd.Parameters.AddWithValue("@UserImage", filePath);
+                            isValid = true;
+                        }
+                        else
+                        {
+                            userImage = string.Empty;
+                            lblMsg.Visible = true;
+                            lblMsg.Text = "Vui lòng lựa chọn file .jpg, .png, .jepg";
+                            lblMsg.CssClass = "alert alert-danger";
+                        }
+                    }
                     else
                     {
                         isValid = true;
@@ -156,6 +182,7 @@ namespace WebUngTuyenViecLamIT.User
                         }
                     }
                 }
+
                 else
                 {
                     lblMsg.Visible = true;

@@ -21,7 +21,7 @@ namespace WebUngTuyenViecLamIT.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Quản Lý"] == null)
+            if (Session["admin"] == null)
             {
                 Response.Redirect("../User/Login.aspx");
             }
@@ -32,6 +32,7 @@ namespace WebUngTuyenViecLamIT.Admin
                 Jobs();
                 AppliedJobs();
                 ContactCount();
+                CompanyCount();
             }
         }
 
@@ -48,6 +49,22 @@ namespace WebUngTuyenViecLamIT.Admin
             else
             {
                 Session["Contact"] = 0;
+            }
+        }
+
+        private void CompanyCount()
+        {
+            con = new SqlConnection(str);
+            sda = new SqlDataAdapter("Select Count(*) from Company", con);
+            dt = new DataTable();
+            sda.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                Session["Companys"] = dt.Rows[0][0];
+            }
+            else
+            {
+                Session["Companys"] = 0;
             }
         }
 

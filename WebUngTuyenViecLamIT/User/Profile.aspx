@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="WebUngTuyenViecLamIT.User.Profile" %>
-
+﻿<%@ Page Title="" Language="C#"  EnableEventValidation="false"  MasterPageFile="~/User/UserMaster.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="WebUngTuyenViecLamIT.User.Profile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -13,11 +12,15 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center">
-                                        <img src="http://bootdey.com/img/Content/avatar/avatar2.png" alt="UserPic" class="rounded-circle"
-                                            width="150" />
+                                        <%--<img src="http://bootdey.com/img/Content/avatar/avatar7.png" alt="UserPic" class="rounded-circle"
+                                            width="150" />--%>
+                                        <div class="company-img">
+                                            <img width="150"  src="<%# GetImageUrl( Eval("UserImage")) %>" alt="">
+                                            &nbsp;&nbsp;&nbsp;
+                                        </div>
                                         <div class="mt-3">
                                             <h4 class="text-capitalize"><%# Eval("Name") %></h4>
-                                            <p class="text-secondary mb-1"><%# Eval("Username") %></p>
+                                            <p class="text-secondary mb-1"><%# Eval("UserName") %></p>
                                             <p class="text-muted font-size-sm text-capitalize">
                                                 <i class="fas fa-map-marker-alt"></i><%# Eval("Country") %>
                                             </p>

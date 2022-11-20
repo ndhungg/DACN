@@ -59,6 +59,7 @@
                          <asp:CommandField CausesValidation="false" HeaderText="Xóa" ShowDeleteButton="true"
                              DeleteImageUrl="../assets/img/icon/trashIcon-32.png" ButtonType="Image"> 
                          <HeaderStyle HorizontalAlign="Center" />
+                              <ItemStyle HorizontalAlign="Center" />
                          </asp:CommandField>
 
                      </Columns>

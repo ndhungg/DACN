@@ -20,7 +20,7 @@ namespace WebUngTuyenViecLamIT.Admin
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            if (Session["Quản Lý"] == null)
+            if (Session["admin"] == null)
             {
                 Response.Redirect("../User/Login.aspx");
             }
@@ -40,8 +40,8 @@ namespace WebUngTuyenViecLamIT.Admin
         {
             String query = String.Empty;
             con = new SqlConnection(str);
-            query = @"Select Row_Number() over(Order by (Select 1)) as [STT], JobId, Title, NoPost, Qualification
-                    , Experience, CompanyName, LastDateToApply, CreateDate from Jobs";
+            query = @"Select Row_Number() over(Order by (Select 1)) as [STT], j.JobId, j.Title, j.NoNumberPost, j.Qualification
+                    , j.Experience, c.CompanyName, j.LastDateToApply, j.CreateDate from Jobs j, Company c";
             cmd = new SqlCommand(query, con);
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             dt = new DataTable();

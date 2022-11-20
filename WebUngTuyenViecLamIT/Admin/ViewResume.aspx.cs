@@ -20,7 +20,7 @@ namespace WebUngTuyenViecLamIT.Admin
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            if (Session["Quản Lý"] == null)
+            if (Session["admin"] == null)
             {
                 Response.Redirect("../User/Login.aspx");
             }
@@ -40,8 +40,8 @@ namespace WebUngTuyenViecLamIT.Admin
         {
             String query = String.Empty;
             con = new SqlConnection(str);
-            query = @"Select Row_Number() over(Order by (Select 1)) as [STT], aj.AppliedJobsId, j.CompanyName, aj.JobId,j.Title,
-                      u.Mobile,u.Name, U.Email, u.Resume from AppliedJobs aj
+            query = @"Select Row_Number() over(Order by (Select 1)) as [STT], aj.AppliedJobsId, aj.JobId, c.CompanyName, j.Title,
+                      u.Mobile,u.Name, U.Email, u.Resume from Company c,  AppliedJobs aj
                       inner join [User] u on aj.UserId = u.UserId
                       inner join Jobs j on aj.JobId = j.JobId";
             cmd = new SqlCommand(query, con);

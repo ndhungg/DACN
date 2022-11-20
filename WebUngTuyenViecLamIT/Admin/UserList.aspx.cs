@@ -15,11 +15,12 @@ namespace WebUngTuyenViecLamIT.Admin
         SqlConnection con;
         SqlCommand cmd;
         DataTable dt;
+        SqlDataReader sdr;
         String str = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Quản Lý"] == null)
+            if (Session["admin"] == null)
             {
                 Response.Redirect("../User/Login.aspx");
             }
@@ -34,7 +35,9 @@ namespace WebUngTuyenViecLamIT.Admin
         {
             String query = String.Empty;
             con = new SqlConnection(str);
-            query = @"Select Row_Number() over(Order by (Select 1)) as [STT], UserId, Name, Email, Mobile, Address from [User]";
+            query = @"Select Row_Number() over(Order by (Select 1)) as [STT], u.UserId, a.UserName, u.Name, u.Email, u.Mobile, u.Address 
+                      from [User]  u 
+                      inner join Account a on a.AccountId = u.AccountId";
             cmd = new SqlCommand(query, con);
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             dt = new DataTable();
@@ -49,21 +52,43 @@ namespace WebUngTuyenViecLamIT.Admin
             {
                 GridViewRow row = GridView1.Rows[e.RowIndex];
                 int userId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
-                String query = "Delete from [User] where UserId = @id";
+                string query = @"Select a.AccountId from [User]  u 
+                                 inner join Account a on a.AccountId = u.AccountId where u.UserId = @id";
                 con = new SqlConnection(str);
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@id", userId);
                 con.Open();
-                int r = cmd.ExecuteNonQuery();
-                if (r > 0)
+                sdr = cmd.ExecuteReader();
+                if (sdr.HasRows)
                 {
-                    lblMsg.Text = "Xóa thành công!!!";
-                    lblMsg.CssClass = "alert alert-success";
-                }
-                else
-                {
-                    lblMsg.Text = "Xóa thất bại!!!";
-                    lblMsg.CssClass = "alert alert-warning";
+                    if (sdr.Read())
+                    {
+                        string accountId = sdr["AccountId"].ToString();
+                        query = "Delete from [User] where UserId = @id";
+                        con = new SqlConnection(str);
+                        cmd = new SqlCommand(query, con);
+                        cmd.Parameters.AddWithValue("@id", userId);
+                        con.Open();
+                        int r = cmd.ExecuteNonQuery();
+                        con.Close();
+                        if (r > 0)
+                        {
+                            String query1 = "Delete Account where AccountId = @id";
+                            con = new SqlConnection(str);
+                            cmd = new SqlCommand(query1, con);
+                            cmd.Parameters.AddWithValue("@id", accountId);
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            lblMsg.Text = "Xóa thành công!!!";
+                            lblMsg.CssClass = "alert alert-success";
+                        }
+                        else
+                        {
+                            lblMsg.Text = "Xóa thất bại!!!";
+                            lblMsg.CssClass = "alert alert-warning";
+                        }
+                    }
                 }
                 GridView1.EditIndex = -1;
                 showUserList();

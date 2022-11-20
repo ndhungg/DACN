@@ -73,7 +73,38 @@
                                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Email" TextMode="Email" required></asp:TextBox>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-md-6">
+                                <div class="col-md-13 pt-3">
+                                    <label style="font-weight: 600">Quốc Gia</label>
+                                    <asp:DropDownList ID="ddlCountry" runat="server" CssClass="form-control w-100" DataSourceID="SqlDataSource1"
+                                        AppendDataBoundItems="True" DataTextField="Name" DataValueField="Name">
+                                        <asp:ListItem Value="0">Lựa chọn quốc gia của bạn</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:WebSiteTuyenDungConnectionString %>"
+                                        SelectCommand="SELECT [Name] FROM [Country]"></asp:SqlDataSource>
+                                    <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator3" runat="server" ErrorMessage="Bạn chưa lựa chọn quốc gia !!!" ForeColor="Red"
+                                        Display="Dynamic" SetFocusOnError="true" Font-Size="Small" ControlToValidate="ddlCountry">
+                                    </asp:RequiredFieldValidator>
+                                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:WebSiteTuyenDungConnectionString %>" SelectCommand="SELECT [Name] FROM [Country]"></asp:SqlDataSource>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="col-md-13 pt-3">
+                                    <label style="font-weight: 600">Loại tài khoản</label>
+                                    <asp:DropDownList ID="ddlAccountType" runat="server" CssClass="form-contact w-100" AppendDataBoundItems="True">
+                                        <asp:ListItem Value="0">Chọn loại tài khoản</asp:ListItem>
+                                        <asp:ListItem>Ứng Viên</asp:ListItem>
+                                        <asp:ListItem>Nhà Tuyển Dụng</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator2" runat="server" ErrorMessage="Bạn chưa lựa loại tài khoản !!!" ForeColor="Red"
+                                        Display="Dynamic" SetFocusOnError="true" Font-Size="Small" ControlToValidate="ddlAccountType">
+                                    </asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+
+                            <%-- <div class="col-12">
                                 <div class="form-group">
                                     <label>Quốc Gia</label>
                                     <asp:DropDownList ID="ddlConuntry" runat="server" DataSourceID="SqlDataSource1" CssClass="form-contact w-100"
@@ -90,7 +121,7 @@
                                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:WebSiteTuyenDungConnectionString %>" SelectCommand="SELECT [Name] FROM [Country]">
                                     </asp:SqlDataSource>
                                 </div>
-                            </div>
+                            </div>--%>
                         </div>
                         <div class="form-group mt-3 mr-10">
                             <asp:Button ID="btnRegister" CssClass="button button-contactForm boxed-btn" runat="server" Text="Đăng Ký"

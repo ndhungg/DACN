@@ -75,12 +75,12 @@
                             </a>
                         </li>
                         
-                        <li>
+                        <%--<li>
                             <a href="NewJob.aspx">
                                 <div class="icon"><i class="fas fa-plus-square"></i></div>
                                 <div class="title">Công việc mới</div>
                             </a>
-                        </li>
+                        </li>--%>
 
                         <li>
                             <a href="JobList.aspx">
@@ -100,6 +100,13 @@
                             <a href="UserList.aspx">
                                 <div class="icon"><i class="fas fa-user"></i></div>
                                 <div class="title">Danh sách ứng viên</div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="CompanyList.aspx">
+                                <div class="icon"><i class="fas fa-user"></i></div>
+                                <div class="title">Danh sách công ty</div>
                             </a>
                         </li>
 

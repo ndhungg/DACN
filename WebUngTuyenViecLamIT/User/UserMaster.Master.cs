@@ -21,6 +21,11 @@ namespace WebUngTuyenViecLamIT.User
                 lbRegisterOrProfile.Text = resume;
                 lbLoginOrLogout.Text = logout;
             }
+            else if(Session["company"] != null)
+            {
+                lbRegisterOrProfile.Text = resume;
+                lbLoginOrLogout.Text = logout;
+            }
             else
             {
                 lbRegisterOrProfile.Text =register;
@@ -32,7 +37,14 @@ namespace WebUngTuyenViecLamIT.User
         {
             if (lbRegisterOrProfile.Text.Trim().Equals(resume))
             {
-                Response.Redirect("Profile.aspx");
+                if(Session["user"] != null)
+                {
+                    Response.Redirect("Profile.aspx");
+                }
+                else if(Session["company"] != null)
+                {
+                    Response.Redirect("ProfileCompany.aspx");
+                }
             }
             else
             {

@@ -31,8 +31,9 @@
                                      <label>Loại đăng nhập</label>
                                     <asp:DropDownList ID="ddlLoginType" CssClass="form-control w-100" runat="server">
                                         <asp:ListItem Value="0">Chọn quyền đăng nhập</asp:ListItem>
-                                        <asp:ListItem>Quản Lý</asp:ListItem>
-                                        <asp:ListItem>Người Dùng</asp:ListItem>
+                                        <asp:ListItem>Admin</asp:ListItem>
+                                        <asp:ListItem>Ứng Viên</asp:ListItem>
+                                         <asp:ListItem>Nhà Tuyển Dụng</asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Bạn chưa chọn quyền Login" ForeColor="Red"
                                          Display="Dynamic" SetFocusOnError="true" Font-Size="Small" InitialValue="0" ControlToValidate="ddlLoginType"></asp:RequiredFieldValidator>

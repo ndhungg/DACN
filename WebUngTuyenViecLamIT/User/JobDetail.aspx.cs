@@ -51,12 +51,13 @@ namespace WebUngTuyenViecLamIT.User
             DataList1.DataBind();
             jobTitle = dt.Rows[0]["Title"].ToString();
         }
+
         protected string GetImageUrl(Object url)
         {
-            string url1 = "";
+            string url1 = string.Empty;
             if (string.IsNullOrEmpty(url.ToString()) || url == DBNull.Value)
             {
-                url1 = "Images/No_image.png";
+                url1 = "~/Images/No_image.png";
             }
             else
             {

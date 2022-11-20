@@ -18,7 +18,7 @@ namespace WebUngTuyenViecLamIT.Admin
         String query = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Quản Lý"] == null)
+            if (Session["admin"] == null)
             {
                 Response.Redirect("../User/Login.aspx");
             }

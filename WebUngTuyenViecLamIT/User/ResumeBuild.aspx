@@ -36,22 +36,6 @@
                                 </div>
                             </div>
 
-                            <%--<div class="col-sm-6 mt-3">
-                                <div class="form-group">
-                                    <label>Mật Khẩu</label>
-                                    <asp:TextBox ID="txtPassWord" TextMode="Password" runat="server" CssClass="form-control" placeholder="Nhập mật khẩu" required></asp:TextBox>
-                                </div>
-                            </div>--%>
-                            <%--<div class="col-sm-6 mt-3">
-                                <div class="form-group">
-                                    <label>Xác Nhận Mật Khẩu</label>
-                                    <asp:TextBox ID="txtConfirmPassWord" TextMode="Password" runat="server" CssClass="form-control" placeholder="Xác nhận mật khẩu" required></asp:TextBox>
-                                    <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Mật khẩu không trùng khớp."
-                                        ControlToCompare="txtPassWord" ControlToValidate="txtConfirmPassWord" ForeColor="Red" Display="Dynamic" SetFocusOnError="true"
-                                        Font-Size="Small"></asp:CompareValidator>
-                                </div>
-                            </div>--%>
-
                             <div class="col-12 pb-4">
                                 <div class="form-group">
                                     <label>Địa Chỉ</label>
@@ -95,38 +79,38 @@
                                 <h6>Thông Tin Hồ Sơ</h6>
                             </div>
 
-                            <div class="col-md-6 col-sm-12 ">
+                           <%-- <div class="col-md-6 col-sm-12 ">
                                 <div class="form-group">
                                     <label>Precentage / Grade</label>
                                     <asp:TextBox ID="txtTenTh" runat="server" CssClass="form-control" placeholder="VD: 90%" required></asp:TextBox>
                                 </div>
-                            </div>
+                            </div>--%>
 
-                            <div class="col-md-6 col-sm-12 ">
+                           <%-- <div class="col-md-6 col-sm-12 ">
                                 <div class="form-group">
                                     <label>Precentage / Grade</label>
                                     <asp:TextBox ID="txtTweflth" runat="server" CssClass="form-control" placeholder="VD: 90%" required></asp:TextBox>
                                 </div>
-                            </div>
+                            </div>--%>
 
-                            <div class="col-md-6 col-sm-12 ">
+                            <%--<div class="col-md-6 col-sm-12 ">
                                 <div class="form-group">
                                     <label>Điểm trung bình tốt nghiệp</label>
                                     <asp:TextBox ID="txtGraduation" runat="server" CssClass="form-control" placeholder="VD: 3.2" required></asp:TextBox>
                                 </div>
-                            </div>
+                            </div>--%>
 
-                             <div class="col-md-6 col-sm-12 ">
+                             <%--<div class="col-md-6 col-sm-12 ">
                                 <div class="form-group">
                                     <label>Điểm trung bình tốt nghiệp</label>
                                     <asp:TextBox ID="txtPostGraduation" runat="server" CssClass="form-control" placeholder="VD: 3.2" required></asp:TextBox>
                                 </div>
-                            </div>
+                            </div>--%>
 
                             <div class="col-md-6 col-sm-12 ">
                                 <div class="form-group">
-                                    <label>PHD Precentage / Grade</label>
-                                    <asp:TextBox ID="txtPhd" runat="server" CssClass="form-control" placeholder="" required></asp:TextBox>
+                                    <label>Sở Thích</label>
+                                    <asp:TextBox ID="txtFavourite" runat="server" CssClass="form-control" placeholder="VD: Nghe nhạc, xem phim ..." required></asp:TextBox>
                                 </div>
                             </div>
 
@@ -144,10 +128,17 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 ">
+                            <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Hồ sơ</label>
                                     <asp:FileUpload ID="fuResume" runat="server" CssClass="form-control pt-2" ToolTip="Chỉ chấp nhận các file có đuôi .doc, .docx, .pdf" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Ảnh đại điện</label>
+                                    <asp:FileUpload ID="fuUserImage" runat="server" CssClass="form-control pt-2" ToolTip="Chỉ chấp nhận các file có đuôi .jpg, .png, .jepg" />
                                 </div>
                             </div>
 

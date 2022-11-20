@@ -19,11 +19,12 @@ namespace WebUngTuyenViecLamIT.User
         SqlDataAdapter sda;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["user"] == null)
+            if(Session["user"] == null && Session["company"] == null)
             {
                 Response.Redirect("Login.aspx");
             }
-            if(!IsPostBack)
+
+            if (!IsPostBack)
             {
                 showUserProfile();
             }
@@ -32,9 +33,11 @@ namespace WebUngTuyenViecLamIT.User
         private void showUserProfile()
         {
             con = new SqlConnection(str);
-            String query = "Select UserId,Username,Name,Address,Mobile,Email,Country,Resume from [User] where Username=@username";
+            String query = "Select u.UserId,a.UserName,u.Name,u.Address,u.Mobile,u.Email,u.Country,u.Resume,u.UserImage from[User] u, Account a " +
+                           "where a.UserName = @username and u.UserId =@id";
             cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@username", Session["user"]);
+            cmd.Parameters.AddWithValue("@id", Session["userId"]);
             sda = new SqlDataAdapter(cmd);
             dt = new DataTable();
             sda.Fill(dt);
@@ -55,6 +58,20 @@ namespace WebUngTuyenViecLamIT.User
             {
                 Response.Redirect("ResumeBuild.aspx?id=" + e.CommandArgument.ToString());
             }
+        }
+
+        protected string GetImageUrl(Object url)
+        {
+            string url1 = string.Empty;
+            if (string.IsNullOrEmpty(url.ToString()) || url == DBNull.Value)
+            {
+                url1 = "~/Images/avatar7.png";
+            }
+            else
+            {
+                url1 = string.Format("~/{0}", url);
+            }
+            return ResolveUrl(url1);
         }
 
     }

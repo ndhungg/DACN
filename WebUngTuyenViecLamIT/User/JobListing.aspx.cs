@@ -18,7 +18,6 @@ namespace WebUngTuyenViecLamIT.User
         String str = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         SqlDataAdapter sda;
         DataTable dt;
-        int jobCount = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

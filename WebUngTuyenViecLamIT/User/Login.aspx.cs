@@ -26,44 +26,77 @@ namespace WebUngTuyenViecLamIT.User
         {
             try
             {
-                if(ddlLoginType.SelectedValue == "Quản Lý")
-                {
-                    username = ConfigurationManager.AppSettings["username"];
-                    password = ConfigurationManager.AppSettings["password"];
-                    if(username == txtUserName.Text.Trim() && password == txtPassWord.Text.Trim())
-                    {
-                        Session["Quản Lý"] = username;
-                        Response.Redirect("../Admin/Dashboard.aspx", false);
-                    }
-                    else
-                    {
-                        showErrorMsg(txtUserName.Text.ToString());
-                    }
-                }
-                else
+                username = ConfigurationManager.AppSettings["UserName"];
+                password = ConfigurationManager.AppSettings["PassWord"];
+
+                if (ddlLoginType.SelectedValue == "Ứng Viên")
                 {
                     con = new SqlConnection(str);
-                    String query = @"Select *from [User] where Username = @Username and Password = @Password";
+                    String query = @"select u.UserId,a.UserName, u.Name, u.Address, u.Mobile, u.Email,u.Country
+                                     from Account a, [User] u
+                                     where a.PassWord = @PassWord and a.UserName = @UserName and a.AccountId = u.AccountId";
+
                     cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@Username", txtUserName.Text.Trim());
                     cmd.Parameters.AddWithValue("@Password", txtPassWord.Text.Trim());
                     con.Open();
                     sdr = cmd.ExecuteReader();
-
-                    if(sdr.Read())
+                    if (sdr.HasRows)
                     {
-                        Session["user"] = sdr["Username"].ToString();
-                        Session["userId"] = sdr["UserId"].ToString();
-                        Response.Redirect("Default.aspx", false);
-                    }
-                    else
-                    {
-                        showErrorMsg(txtUserName.Text.ToString());
+                        if (sdr.Read())
+                        {
+                            Session["user"] = sdr["UserName"].ToString();
+                            Session["userId"] = sdr["UserId"].ToString();
+                            Response.Redirect("Default.aspx", false);
+                        }
+                        else if (txtUserName.Text.Trim() != username || txtPassWord.Text.Trim() != password)
+                        {
+                            showErrorMsg(txtUserName.Text.ToString());
+                        }
                     }
                     con.Close();
                 }
+                else if (ddlLoginType.SelectedValue == "Nhà Tuyển Dụng")
+                {
+                    con = new SqlConnection(str);
+                    String query = @"select c.CompanyId, a.UserName, c.CompanyName, c.Address, c.Mobile, c.Email,c.Satus,c.Country
+                                     from Account a, Company c
+                                     where a.PassWord = @PassWord and a.UserName = @UserName and a.AccountId = c.AccountId";
+
+                    cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@Username", txtUserName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Password", txtPassWord.Text.Trim());
+                    con.Open();
+                    sdr = cmd.ExecuteReader();
+                    if (sdr.HasRows)
+                    {
+                        if (sdr.Read())
+                        {
+                            Session["company"] = sdr["UserName"].ToString();
+                            Session["companyId"] = sdr["CompanyId"].ToString();
+                            Response.Redirect("Default.aspx", false);
+                        }
+                        else if (txtUserName.Text.Trim() != username || txtPassWord.Text.Trim() != password)
+                        {
+                            showErrorMsg(txtUserName.Text.ToString());
+                        }
+                    }
+                    con.Close();
+                }
+                else
+                {
+                    if (username == txtUserName.Text.Trim() && password == txtPassWord.Text.Trim())
+                    {
+                        Session["admin"] = username;
+                        Response.Redirect("../Admin/Dashboard.aspx", false);
+                    }
+                    else if (txtUserName.Text.Trim() != username || txtPassWord.Text.Trim() != password)
+                    {
+                        showErrorMsg(txtUserName.Text.ToString());
+                    }
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "'); </script>");
                 con.Close();

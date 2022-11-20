@@ -13,6 +13,7 @@ namespace WebUngTuyenViecLamIT.User
     {
         SqlConnection con;
         SqlCommand cmd;
+        SqlDataReader sdr;
         String str = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,17 +24,34 @@ namespace WebUngTuyenViecLamIT.User
         {
             try
             {
+                insertAccount();
+                string id = getId();
                 con = new SqlConnection(str);
-                String query = @"insert into [User] (Username,Password,Name,Address,Mobile,Email,Country)
-                                values (@Username,@Password,@Name,@Address,@Mobile,@Email,@Country)";
-                cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Username", txtUserName.Text.Trim());
-                cmd.Parameters.AddWithValue("@Password", txtPassWord.Text.Trim());
-                cmd.Parameters.AddWithValue("@Name", txtFullName.Text.Trim());
-                cmd.Parameters.AddWithValue("@Address", txtAdress.Text.Trim());
-                cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.Trim());
-                cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
-                cmd.Parameters.AddWithValue("@Country", ddlConuntry.SelectedValue);
+                string company = "Nhà Tuyển Dụng";
+                if (ddlAccountType.SelectedValue.Equals(company))
+                {
+                    string query = @"insert into Company (CompanyName,Email,Mobile,Address,Country,AccountId)
+                              values (@CompanyName,@Email,@Mobile,@Address,@Country,@AccountId)";
+                    cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@CompanyName", txtFullName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Address", txtAdress.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Country", ddlCountry.SelectedValue);
+                    cmd.Parameters.AddWithValue("@AccountId", id);
+                }
+                else
+                {
+                    string query = @"insert into [User] (Name,Email,Mobile,Address,Country,AccountId)
+                           values (@Name,@Email,@Mobile,@Address,@Country,@AccountId)";
+                    cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@Name", txtFullName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Address", txtAdress.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Country", ddlCountry.SelectedValue);
+                    cmd.Parameters.AddWithValue("@AccountId", id);
+                }
                 con.Open();
                 int r = cmd.ExecuteNonQuery();
                 if (r > 0)
@@ -50,9 +68,8 @@ namespace WebUngTuyenViecLamIT.User
                     lblMsg.CssClass = "alert alert-warning";
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
-                //Check UserName đã có in litsUser hay chưa and Message UseName Duplication
                 if (ex.Message.Contains("Violation of UNIQUE KEY contraint"))
                 {
                     Response.Write("<script>alert('" + ex.Message + "'); </script>");
@@ -62,11 +79,10 @@ namespace WebUngTuyenViecLamIT.User
                     lblMsg.Visible = true;
                     lblMsg.Text = "<b> Tài khoản có tên: " + txtUserName.Text.Trim() + "</b> đã tồn tại trong danh sách !!! ";
                     lblMsg.CssClass = "alert alert-warning";
-                    txtUserName.Text = String.Empty;
                     txtUserName.Focus();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "'); </script>");
             }
@@ -74,6 +90,60 @@ namespace WebUngTuyenViecLamIT.User
             {
                 con.Close();
             }
+        }
+
+        private void insertAccount()
+        {
+            try
+            {
+                con = new SqlConnection(str);
+                String query = @"insert into Account (UserName,PassWord)
+                                values (@Username,@Password)";
+                cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Username", txtUserName.Text.Trim());
+                cmd.Parameters.AddWithValue("@Password", txtPassWord.Text.Trim());
+                con.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+
+            catch (SqlException ex)
+            {
+                if (ex.Message.Contains("Violation of UNIQUE KEY contraint"))
+                {
+                    Response.Write("<script>alert('" + ex.Message + "'); </script>");
+                }
+                else
+                {
+                    lblMsg.Visible = true;
+                    lblMsg.Text = "<b> Tài khoản có tên: " + txtUserName.Text.Trim() + "</b> đã tồn tại trong danh sách !!! ";
+                    lblMsg.CssClass = "alert alert-warning";
+                    txtUserName.Focus();
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+
+        private string getId()
+        {
+            string id = "";
+            con = new SqlConnection(str);
+            String query = @"Select AccountId from Account where Username = @Username and Password = @Password";
+            cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@Username", txtUserName.Text.Trim());
+            cmd.Parameters.AddWithValue("@Password", txtPassWord.Text.Trim());
+            con.Open();
+            sdr = cmd.ExecuteReader();
+            if (sdr.Read())
+            {
+                id = sdr["AccountId"].ToString();
+            }
+            con.Close();
+            return id;
         }
 
         private void clear()
@@ -85,7 +155,8 @@ namespace WebUngTuyenViecLamIT.User
             txtAdress.Text = String.Empty;
             txtMobile.Text = String.Empty;
             txtEmail.Text = String.Empty;
-            ddlConuntry.ClearSelection();
+            ddlCountry.ClearSelection();
+            ddlAccountType.ClearSelection();
         }
         
     }

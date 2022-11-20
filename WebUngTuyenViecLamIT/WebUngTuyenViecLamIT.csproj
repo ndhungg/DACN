@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\CompanyList.aspx" />
     <Content Include="Admin\ContactList.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Admin\JobList.aspx" />
@@ -225,7 +226,10 @@
     <Content Include="assets\js\vendor\jquery-1.12.4.min.js" />
     <Content Include="assets\js\vendor\modernizr-3.5.0.min.js" />
     <Content Include="assets\js\wow.min.js" />
+    <Content Include="Company\ProfileCompany.aspx" />
+    <Content Include="Company\ResumeCompany.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\avatar7.png" />
     <Content Include="Images\No_image.png" />
     <Content Include="User\About.aspx" />
     <Content Include="User\Contact.aspx" />
@@ -234,8 +238,10 @@
     <Content Include="User\JobListing.aspx" />
     <Content Include="User\Login.aspx" />
     <Content Include="User\Profile.aspx" />
+    <Content Include="User\ProfileCompany.aspx" />
     <Content Include="User\Register.aspx" />
     <Content Include="User\ResumeBuild.aspx" />
+    <Content Include="User\ResumeBuildCompany.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +251,13 @@
     </Compile>
     <Compile Include="Admin\AdminMaster.Master.designer.cs">
       <DependentUpon>AdminMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CompanyList.aspx.cs">
+      <DependentUpon>CompanyList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CompanyList.aspx.designer.cs">
+      <DependentUpon>CompanyList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ContactList.aspx.cs">
       <DependentUpon>ContactList.aspx</DependentUpon>
@@ -287,6 +300,27 @@
     </Compile>
     <Compile Include="Admin\ViewResume.aspx.designer.cs">
       <DependentUpon>ViewResume.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\CompanyMaster.Master.cs">
+      <DependentUpon>CompanyMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\CompanyMaster.Master.designer.cs">
+      <DependentUpon>CompanyMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Company\ProfileCompany.aspx.cs">
+      <DependentUpon>ProfileCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\ProfileCompany.aspx.designer.cs">
+      <DependentUpon>ProfileCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\ResumeCompany.aspx.cs">
+      <DependentUpon>ResumeCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\ResumeCompany.aspx.designer.cs">
+      <DependentUpon>ResumeCompany.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -342,6 +376,13 @@
     <Compile Include="User\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="User\ProfileCompany.aspx.cs">
+      <DependentUpon>ProfileCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ProfileCompany.aspx.designer.cs">
+      <DependentUpon>ProfileCompany.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -355,6 +396,13 @@
     </Compile>
     <Compile Include="User\ResumeBuild.aspx.designer.cs">
       <DependentUpon>ResumeBuild.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\ResumeBuildCompany.aspx.cs">
+      <DependentUpon>ResumeBuildCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ResumeBuildCompany.aspx.designer.cs">
+      <DependentUpon>ResumeBuildCompany.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\UserMaster.Master.cs">
       <DependentUpon>UserMaster.Master</DependentUpon>
@@ -413,6 +461,7 @@
     <Content Include="assets\scss\_testimonial.scss" />
     <Content Include="assets\scss\_variables.scss" />
     <Content Include="Admin\AdminMaster.Master" />
+    <Content Include="Company\CompanyMaster.Master" />
     <None Include="packages.config" />
     <Content Include="User\UserMaster.Master" />
     <None Include="Web.Debug.config">
@@ -424,6 +473,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="CompanyImages\" />
     <Folder Include="Models\" />
     <Folder Include="Resumes\" />
   </ItemGroup>
