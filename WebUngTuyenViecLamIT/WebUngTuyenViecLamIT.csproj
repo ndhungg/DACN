@@ -70,6 +70,7 @@
     <Content Include="Admin\CompanyList.aspx" />
     <Content Include="Admin\ContactList.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
+    <Content Include="Admin\EditJobs.aspx" />
     <Content Include="Admin\JobList.aspx" />
     <Content Include="Admin\NewJob.aspx" />
     <Content Include="Admin\UserList.aspx" />
@@ -226,22 +227,25 @@
     <Content Include="assets\js\vendor\jquery-1.12.4.min.js" />
     <Content Include="assets\js\vendor\modernizr-3.5.0.min.js" />
     <Content Include="assets\js\wow.min.js" />
-    <Content Include="Company\ProfileCompany.aspx" />
-    <Content Include="Company\ResumeCompany.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\avatar7.png" />
     <Content Include="Images\No_image.png" />
     <Content Include="User\About.aspx" />
     <Content Include="User\Contact.aspx" />
     <Content Include="User\Default.aspx" />
+    <Content Include="User\EditJob.aspx" />
     <Content Include="User\JobDetail.aspx" />
+    <Content Include="User\JobListCompany.aspx" />
     <Content Include="User\JobListing.aspx" />
     <Content Include="User\Login.aspx" />
+    <Content Include="User\NewJob.aspx" />
     <Content Include="User\Profile.aspx" />
     <Content Include="User\ProfileCompany.aspx" />
     <Content Include="User\Register.aspx" />
     <Content Include="User\ResumeBuild.aspx" />
     <Content Include="User\ResumeBuildCompany.aspx" />
+    <Content Include="User\UserAppliedJobs.aspx" />
+    <Content Include="User\ViewResumeJobs.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -273,6 +277,13 @@
     <Compile Include="Admin\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\EditJobs.aspx.cs">
+      <DependentUpon>EditJobs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditJobs.aspx.designer.cs">
+      <DependentUpon>EditJobs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\JobList.aspx.cs">
       <DependentUpon>JobList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -301,27 +312,6 @@
     <Compile Include="Admin\ViewResume.aspx.designer.cs">
       <DependentUpon>ViewResume.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Company\CompanyMaster.Master.cs">
-      <DependentUpon>CompanyMaster.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Company\CompanyMaster.Master.designer.cs">
-      <DependentUpon>CompanyMaster.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Company\ProfileCompany.aspx.cs">
-      <DependentUpon>ProfileCompany.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Company\ProfileCompany.aspx.designer.cs">
-      <DependentUpon>ProfileCompany.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Company\ResumeCompany.aspx.cs">
-      <DependentUpon>ResumeCompany.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Company\ResumeCompany.aspx.designer.cs">
-      <DependentUpon>ResumeCompany.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -333,6 +323,13 @@
     </Compile>
     <Compile Include="User\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Company\CompanyMaster.Master.cs">
+      <DependentUpon>CompanyMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Company\CompanyMaster.Master.designer.cs">
+      <DependentUpon>CompanyMaster.Master</DependentUpon>
     </Compile>
     <Compile Include="User\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -348,12 +345,26 @@
     <Compile Include="User\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="User\EditJob.aspx.cs">
+      <DependentUpon>EditJob.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\EditJob.aspx.designer.cs">
+      <DependentUpon>EditJob.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User\JobDetail.aspx.cs">
       <DependentUpon>JobDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="User\JobDetail.aspx.designer.cs">
       <DependentUpon>JobDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\JobListCompany.aspx.cs">
+      <DependentUpon>JobListCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\JobListCompany.aspx.designer.cs">
+      <DependentUpon>JobListCompany.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\JobListing.aspx.cs">
       <DependentUpon>JobListing.aspx</DependentUpon>
@@ -368,6 +379,13 @@
     </Compile>
     <Compile Include="User\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\NewJob.aspx.cs">
+      <DependentUpon>NewJob.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\NewJob.aspx.designer.cs">
+      <DependentUpon>NewJob.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
@@ -404,12 +422,33 @@
     <Compile Include="User\ResumeBuildCompany.aspx.designer.cs">
       <DependentUpon>ResumeBuildCompany.aspx</DependentUpon>
     </Compile>
+    <Compile Include="User\UserAppliedJobs.aspx.cs">
+      <DependentUpon>UserAppliedJobs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\UserAppliedJobs.aspx.designer.cs">
+      <DependentUpon>UserAppliedJobs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User\UserMaster.Master.cs">
       <DependentUpon>UserMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="User\UserMaster.Master.designer.cs">
       <DependentUpon>UserMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="User\ViewResumeJobs.aspx.cs">
+      <DependentUpon>ViewResumeJobs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ViewResumeJobs.aspx.designer.cs">
+      <DependentUpon>ViewResumeJobs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\ViewUser\UserApplied.Master.cs">
+      <DependentUpon>UserApplied.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ViewUser\UserApplied.Master.designer.cs">
+      <DependentUpon>UserApplied.Master</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -461,9 +500,10 @@
     <Content Include="assets\scss\_testimonial.scss" />
     <Content Include="assets\scss\_variables.scss" />
     <Content Include="Admin\AdminMaster.Master" />
-    <Content Include="Company\CompanyMaster.Master" />
     <None Include="packages.config" />
     <Content Include="User\UserMaster.Master" />
+    <Content Include="User\Company\CompanyMaster.Master" />
+    <Content Include="User\ViewUser\UserApplied.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

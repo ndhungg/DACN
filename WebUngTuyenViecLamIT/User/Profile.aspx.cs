@@ -58,6 +58,10 @@ namespace WebUngTuyenViecLamIT.User
             {
                 Response.Redirect("ResumeBuild.aspx?id=" + e.CommandArgument.ToString());
             }
+            else if  (e.CommandName == "ListAppliedJob")
+            {
+                Response.Redirect("ViewResumeJobs.aspx?id=" + e.CommandArgument.ToString());
+            }
         }
 
         protected string GetImageUrl(Object url)

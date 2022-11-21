@@ -32,7 +32,9 @@ namespace WebUngTuyenViecLamIT.User
             if (dt == null)
             {
                 con = new SqlConnection(str);
-                string query = @"Select JobId,Title,Salary,JobType,CompanyName,CompanyImage,City,Country,CreateDate from Jobs order by CreateDate DESC ";
+                string query = @"Select j.JobId,j.Title,j.Salary,j.JobType,c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate 
+                                 from Jobs j, Company c where j.Status = 1 and j.CompanyId = c.CompanyId
+                                 order by CreateDate DESC ";
                 cmd = new SqlCommand(query, con);
                 sda = new SqlDataAdapter(cmd);
                 dt = new DataTable();
@@ -73,7 +75,7 @@ namespace WebUngTuyenViecLamIT.User
             string url1 = "";
             if(string.IsNullOrEmpty(url.ToString()) || url == DBNull.Value)
             {
-                url1 = "Images/No_image.png";
+                url1 = "~/Images/No_image.png";
             }
             else
             {

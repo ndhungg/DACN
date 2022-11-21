@@ -58,8 +58,10 @@ namespace WebUngTuyenViecLamIT.Admin
             {
                 GridViewRow row = GridView1.Rows[e.RowIndex];
                 int companyId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
-                string query = @"Select a.AccountId from Company c 
-                                 inner join Account a on a.AccountId = c.AccountId where c.CompanyId = @id";
+                string query = @"Select a.AccountId, j.JobId from Company c 
+                                inner join Account a on a.AccountId = c.AccountId
+                                inner join Jobs j on j.CompanyId = c.CompanyId
+                                where c.CompanyId = @id";
                 con = new SqlConnection(str);
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@id", companyId);
@@ -77,6 +79,7 @@ namespace WebUngTuyenViecLamIT.Admin
                         con.Open();
                         int r = cmd.ExecuteNonQuery();
                         con.Close();
+
                         if (r > 0)
                         {
                             String query1 = "Delete Account where AccountId = @id";

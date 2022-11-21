@@ -41,7 +41,9 @@ namespace WebUngTuyenViecLamIT.User
         private void showJobDetail()
         {
             con = new SqlConnection(str);
-            string query = @"Select * from Jobs where JobId = @id";
+            string query = @"Select j.JobId, j.Title,j.NoNumberPost,j.Description, j.Qualification, J.Experience, j.Salary,j.JobType,
+                            c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate, j.Specialization, j.LastDateToApply, c.Address,c.Website,c.Email
+                            from Jobs j, Company c where c.CompanyId = j.CompanyId and j.Status = 1 and j.JobId = @id";
             cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@id",Request.QueryString["id"]);
             sda = new SqlDataAdapter(cmd);
@@ -69,9 +71,9 @@ namespace WebUngTuyenViecLamIT.User
 
         protected void DataList1_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            if(e.CommandName.Equals(appliedJobs))
+            if (e.CommandName.Equals(appliedJobs))
             {
-                if(Session["user"] != null)
+                if (Session["user"] != null && Session["company"] == null)
                 {
                     try
                     {
@@ -105,6 +107,11 @@ namespace WebUngTuyenViecLamIT.User
                         con.Close();
                     }
                 }
+
+                else if (Session["user"] == null && Session["company"] != null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
                 else
                 {
                     Response.Redirect("Login.aspx");
@@ -115,7 +122,7 @@ namespace WebUngTuyenViecLamIT.User
 
         protected void DataList1_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            if (Session["user"] != null)
+            if (Session["user"] != null && Session["company"] == null )
             {
                 LinkButton btnApplyJob = e.Item.FindControl("labAppliedJobs") as LinkButton;
                 if (isApplied())

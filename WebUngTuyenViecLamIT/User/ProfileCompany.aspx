@@ -84,8 +84,8 @@
                                                 CommandName="EditCompanyProfile" CommandArgument='<%# Eval("CompanyId") %>' />
                                         </div>
                                         <div class="col-sm-6">
-                                            <asp:Button ID="Button1" runat="server" Text="Danh sách công việc" CssClass="button button-contactForm boxed-btn"
-                                                CommandName="EditCompanyProfile" CommandArgument='<%# Eval("CompanyId") %>' />
+                                            <asp:Button ID="btnViewCompany" runat="server" Text="Danh sách công việc" CssClass="button button-contactForm boxed-btn"
+                                                CommandName="ViewListJobCompany" CommandArgument='<%# Eval("CompanyId") %>' />
                                         </div>
                                     </div>
                                 </div>

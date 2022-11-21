@@ -255,7 +255,7 @@
                                 <!-- Count of Job list End -->
 
                                 <!-- single-job-content -->
-                                <asp:DataList ID="DataList1" runat="server">
+                                <asp:DataList ID="DataList1" runat="server" PageSize="5" AllowPaging="True">
                                     <ItemTemplate>
                                         <div class="single-job-items mb-30">
                                             <div class="job-items">

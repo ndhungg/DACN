@@ -9,9 +9,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebUngTuyenViecLamIT.Admin
+namespace WebUngTuyenViecLamIT.User
 {
-    public partial class ViewResume : System.Web.UI.Page
+    public partial class ViewResumeJobs : System.Web.UI.Page
     {
         SqlConnection con;
         SqlCommand cmd;
@@ -20,9 +20,9 @@ namespace WebUngTuyenViecLamIT.Admin
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            if (Session["admin"] == null)
+            if (Session["user"] == null && Session["company"] == null)
             {
-                Response.Redirect("../User/Login.aspx");
+                Response.Redirect("Login.aspx");
             }
 
             if (!IsPostBack)
@@ -40,12 +40,13 @@ namespace WebUngTuyenViecLamIT.Admin
         {
             String query = String.Empty;
             con = new SqlConnection(str);
-            query = @"Select Row_Number() over(Order by (Select 1)) as [STT], aj.AppliedJobsId, aj.JobId, c.CompanyName, j.Title,
-                      u.Mobile,u.Name, U.Email, u.Resume from AppliedJobs aj
+            query = @"Select Row_Number() over(Order by (Select 1)) as [STT], aj.AppliedJobsId, aj.JobId, u.Name, c.CompanyName, j.Title,
+                      c.Mobile, j.JobType, c.Email from AppliedJobs aj
                       inner join [User] u on aj.UserId = u.UserId
                       inner join Jobs j on aj.JobId = j.JobId
-					  inner join Company c on c.CompanyId = j.CompanyId";
+					  inner join Company c on c.CompanyId = j.CompanyId where u.UserId = @id";
             cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@id", Session["userId"].ToString());
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             dt = new DataTable();
             sda.Fill(dt);
@@ -53,10 +54,26 @@ namespace WebUngTuyenViecLamIT.Admin
             GridView1.DataBind();
         }
 
-        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            GridView1.PageIndex = e.NewPageIndex;
-            ShowAppliedJob();
+            //e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView1, "Select$" + e.Row.RowIndex);
+            //e.Row.ToolTip = "Click xem thông tin chi tiết công việc";
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //foreach (GridViewRow row in GridView1.Rows)
+            //{
+            //    if (row.RowIndex == GridView1.SelectedIndex)
+            //    {
+            //        HiddenField jobId = (HiddenField)row.FindControl("hdnJobId");
+            //        Response.Redirect("JobList.aspx?id=" + jobId.Value);
+            //    }
+            //    else
+            //    {
+            //        row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+            //    }
+            //}
         }
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -94,28 +111,10 @@ namespace WebUngTuyenViecLamIT.Admin
             }
         }
 
-
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            foreach(GridViewRow row in GridView1.Rows)
-            {
-                if(row.RowIndex == GridView1.SelectedIndex)
-                {
-                    HiddenField jobId = (HiddenField)row.FindControl("hdnJobId");
-                    Response.Redirect("JobList.aspx?id="+ jobId.Value);
-                }
-                else
-                {
-                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                }
-            }
-
-        }
-
-        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView1, "Select$" + e.Row.RowIndex);
-            e.Row.ToolTip = "Click xem thông tin chi tiết công việc";
+            GridView1.PageIndex = e.NewPageIndex;
+            ShowAppliedJob();
         }
     }
 }

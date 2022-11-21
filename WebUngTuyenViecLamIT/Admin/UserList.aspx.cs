@@ -52,8 +52,11 @@ namespace WebUngTuyenViecLamIT.Admin
             {
                 GridViewRow row = GridView1.Rows[e.RowIndex];
                 int userId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
-                string query = @"Select a.AccountId from [User]  u 
-                                 inner join Account a on a.AccountId = u.AccountId where u.UserId = @id";
+                string query = @"Select a.AccountId , al.AppliedJobsId  from [User]  u 
+                                 inner join Account a on a.AccountId = u.AccountId
+                                 inner join AppliedJobs al on al.UserId = u.UserId
+                                 inner join Jobs j on j.JobId = al.JobId
+                                 where  u.UserId = @id";
                 con = new SqlConnection(str);
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@id", userId);
@@ -63,30 +66,42 @@ namespace WebUngTuyenViecLamIT.Admin
                 {
                     if (sdr.Read())
                     {
+                        string applideId = sdr["AppliedJobsId"].ToString();
                         string accountId = sdr["AccountId"].ToString();
-                        query = "Delete from [User] where UserId = @id";
+
+                        query = "delete from AppliedJobs where AppliedJobsId =@id";
                         con = new SqlConnection(str);
                         cmd = new SqlCommand(query, con);
-                        cmd.Parameters.AddWithValue("@id", userId);
+                        cmd.Parameters.AddWithValue("@id", applideId);
                         con.Open();
                         int r = cmd.ExecuteNonQuery();
                         con.Close();
-                        if (r > 0)
+                        if(r > 0)
                         {
-                            String query1 = "Delete Account where AccountId = @id";
+                            query = "Delete from [User] where UserId = @id";
                             con = new SqlConnection(str);
-                            cmd = new SqlCommand(query1, con);
-                            cmd.Parameters.AddWithValue("@id", accountId);
+                            cmd = new SqlCommand(query, con);
+                            cmd.Parameters.AddWithValue("@id", userId);
                             con.Open();
-                            cmd.ExecuteNonQuery();
+                            int r1 = cmd.ExecuteNonQuery();
                             con.Close();
-                            lblMsg.Text = "Xóa thành công!!!";
-                            lblMsg.CssClass = "alert alert-success";
-                        }
-                        else
-                        {
-                            lblMsg.Text = "Xóa thất bại!!!";
-                            lblMsg.CssClass = "alert alert-warning";
+                            if (r1 > 0)
+                            {
+                                String query1 = "Delete Account where AccountId = @id";
+                                con = new SqlConnection(str);
+                                cmd = new SqlCommand(query1, con);
+                                cmd.Parameters.AddWithValue("@id", accountId);
+                                con.Open();
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+                                lblMsg.Text = "Xóa thành công!!!";
+                                lblMsg.CssClass = "alert alert-success";
+                            }
+                            else
+                            {
+                                lblMsg.Text = "Xóa thất bại!!!";
+                                lblMsg.CssClass = "alert alert-warning";
+                            }
                         }
                     }
                 }

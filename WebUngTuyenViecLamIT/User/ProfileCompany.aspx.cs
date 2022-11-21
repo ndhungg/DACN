@@ -36,8 +36,8 @@ namespace WebUngTuyenViecLamIT.User
             String query = "Select c.CompanyId,a.UserName,c.CompanyName,c.Address,c.Mobile,c.Email,c.Country,c.CompanyImage, c.Website,c.City " +
                            "from Company c, Account a where a.Username = @username and c.CompanyId = @id";
             cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@username", Session["company"]);
-            cmd.Parameters.AddWithValue("@id", Session["companyId"]);
+            cmd.Parameters.AddWithValue("@username", Session["company"].ToString());
+            cmd.Parameters.AddWithValue("@id", Session["companyId"].ToString());
             sda = new SqlDataAdapter(cmd);
             dt = new DataTable();
             sda.Fill(dt);
@@ -57,6 +57,10 @@ namespace WebUngTuyenViecLamIT.User
             if (e.CommandName == "EditCompanyProfile")
             {
                 Response.Redirect("ResumeBuildCompany.aspx?id=" + e.CommandArgument.ToString());
+            }
+            else if (e.CommandName == "ViewListJobCompany")
+            {
+                Response.Redirect("JobListCompany.aspx?id=" + e.CommandArgument.ToString());
             }
         }
 

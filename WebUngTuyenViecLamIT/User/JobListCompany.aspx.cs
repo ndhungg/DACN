@@ -9,9 +9,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebUngTuyenViecLamIT.Admin
+namespace WebUngTuyenViecLamIT.User
 {
-    public partial class JobList : System.Web.UI.Page
+    public partial class JobListCompany : System.Web.UI.Page
     {
         SqlConnection con;
         SqlCommand cmd;
@@ -20,10 +20,11 @@ namespace WebUngTuyenViecLamIT.Admin
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            if (Session["admin"] == null)
+            if (Session["user"] == null && Session["company"] == null)
             {
                 Response.Redirect("Login.aspx");
             }
+
             if (!IsPostBack)
             {
                 ShowJob();
@@ -35,19 +36,22 @@ namespace WebUngTuyenViecLamIT.Admin
             ShowJob();
         }
 
+
+
         private void ShowJob()
         {
             String query = String.Empty;
             con = new SqlConnection(str);
-            query = @"Select Row_Number() over(Order by (Select 1)) as [STT], j.JobId,c.CompanyName, j.Title, j.JobType, j.NoNumberPost,
-                      j.Experience, j.LastDateToApply, j.CreateDate, j.Status from Jobs j, Company c  where c.CompanyId = j.CompanyId";
+            string id = Session["companyId"].ToString();
+            query = @"Select Row_Number() over(Order by (Select 1)) as [STT], j.JobId, j.Title, j.JobType, j.NoNumberPost, j.Experience, j.Qualification
+                    ,j.LastDateToApply from Jobs j, Company c where c.CompanyId = j.CompanyId and c.CompanyId = '" + id + "' ";
             cmd = new SqlCommand(query, con);
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             dt = new DataTable();
             sda.Fill(dt);
             GridView1.DataSource = dt;
             GridView1.DataBind();
-            if(Request.QueryString["id"] != null)
+            if (Request.QueryString["id"] != null)
             {
                 linkBack.Visible = true;
             }
@@ -71,7 +75,7 @@ namespace WebUngTuyenViecLamIT.Admin
                 cmd.Parameters.AddWithValue("@id", jobId);
                 con.Open();
                 int r = cmd.ExecuteNonQuery();
-                if(r > 0)
+                if (r > 0)
                 {
                     lblMsg.Text = "Xóa thành công!!!";
                     lblMsg.CssClass = "alert alert-success";
@@ -96,26 +100,45 @@ namespace WebUngTuyenViecLamIT.Admin
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if(e.CommandName == "EditJob")
+            if (e.CommandName == "EditJob")
             {
-                Response.Redirect("EditJobs.aspx?id="+e.CommandArgument.ToString());
+                Response.Redirect("EditJob.aspx?id=" + e.CommandArgument.ToString());
             }
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if(e.Row.RowType == DataControlRowType.DataRow)
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.ID = e.Row.RowIndex.ToString();
-                if(Request.QueryString["id"] != null)
+                if (Request.QueryString["id"] != null)
                 {
                     int jobId = Convert.ToInt32(GridView1.DataKeys[e.Row.RowIndex].Values[0]);
-                    if(jobId == Convert.ToInt32(Request.QueryString["id"]))
+
+                    String query = @"Select c.CompanyId from Company c, Jobs j where j.CompanyId = c.companyId and JobId = @id";
+                    con = new SqlConnection(str);
+                    cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@id", jobId);
+                    con.Open();
+                    SqlDataReader sdr = cmd.ExecuteReader();
+
+                    if (sdr.HasRows)
                     {
-                        e.Row.BackColor = ColorTranslator.FromHtml("#A1DCF2");
+                        if (sdr.Read())
+                        {
+                            string id = sdr["CompanyId"].ToString().Trim();
+                            if (id == Request.QueryString["id"].ToString().Trim())
+                            {
+                                e.Row.BackColor = ColorTranslator.FromHtml("#A1DCF2");
+                            }
+                        }
                     }
+                    con.Close();
                 }
             }
         }
+
+
+
     }
 }

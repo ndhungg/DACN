@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMaster.Master" AutoEventWireup="true" CodeBehind="JobList.aspx.cs" Inherits="WebUngTuyenViecLamIT.Admin.JobList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/ViewUser/UserApplied.Master" AutoEventWireup="true" CodeBehind="UserAppliedJobs.aspx.cs" Inherits="WebUngTuyenViecLamIT.User.UserAppliedJobs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <div style="background-image: url('../Images/bg.jpg'); width: 100%; height: 720px; background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
+ <div style="background-image: url('../Images/bg.jpg'); width: 100%; height: 720px; background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
          <div class="container pt-4 pb-4">
 
            <%-- <div>
@@ -65,31 +65,20 @@
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:BoundField>
 
-                         <asp:TemplateField HeaderText =" Trạng Thái">
-                             <ItemTemplate>
-                                 <asp:Label ID="Label1" runat="server" Text=' <%# Eval("Status").ToString() == "False" ? "Chưa tải lên" : "Đã Tải lên" %>'></asp:Label>
-                             </ItemTemplate>
-                             <ItemStyle HorizontalAlign="Center" />
-                         </asp:TemplateField>
-                         
-                         <%--<asp:BoundField DataField="Status"  HeaderText="Trạng Thái">
-                         <ItemStyle HorizontalAlign="Center" />
-                         </asp:BoundField>--%>
-
                          <asp:CommandField CausesValidation="false" HeaderText="Xóa" ShowDeleteButton="true"
                              DeleteImageUrl="../assets/img/icon/trashIcon-32.png" ButtonType="Image">
                          <HeaderStyle HorizontalAlign="Center" />
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:CommandField>
 
-                         <asp:TemplateField HeaderText="Cập Nhật">
+                       <%--  <asp:TemplateField HeaderText="Cập Nhật">
                              <ItemTemplate>
                                  <asp:LinkButton ID="btnEditJob" runat="server" CommandName="EditJob" CommandArgument='<%# Eval("JobId") %>'>
                                       <asp:Image ID="Image1" runat="server" ImageUrl="../assets/img/icon/update-32.png"/>
                                  </asp:LinkButton>
                              </ItemTemplate>
                              <ItemStyle HorizontalAlign="Center" />
-                         </asp:TemplateField>
+                         </asp:TemplateField>--%>
 
                      </Columns>
                      <HeaderStyle BackColor="#2196f3" ForeColor="White" />

@@ -17,6 +17,8 @@ namespace WebUngTuyenViecLamIT.User
         String str = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         String username, password = string.Empty;
 
+        public static int id;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -72,6 +74,7 @@ namespace WebUngTuyenViecLamIT.User
                     {
                         if (sdr.Read())
                         {
+                            id = Convert.ToInt32(sdr["CompanyId"].ToString());
                             Session["company"] = sdr["UserName"].ToString();
                             Session["companyId"] = sdr["CompanyId"].ToString();
                             Response.Redirect("Default.aspx", false);

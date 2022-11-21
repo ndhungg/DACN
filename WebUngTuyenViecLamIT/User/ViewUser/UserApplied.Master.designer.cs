@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebUngTuyenViecLamIT.Company
+namespace WebUngTuyenViecLamIT.User.ViewUser
 {
 
 
-    public partial class CompanyMaster
+    public partial class UserApplied
     {
 
         /// <summary>
@@ -33,22 +33,13 @@ namespace WebUngTuyenViecLamIT.Company
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// lbRegisterOrProfile control.
+        /// btnGoBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbRegisterOrProfile;
-
-        /// <summary>
-        /// lbLoginOrLogout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbLoginOrLogout;
+        protected global::System.Web.UI.WebControls.LinkButton btnGoBack;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

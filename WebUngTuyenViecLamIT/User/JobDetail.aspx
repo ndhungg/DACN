@@ -91,7 +91,7 @@
                                 <ul>
                                     <li>Ngày đăng bài: <span><%# DataBinder.Eval(Container.DataItem, "CreateDate", "{0:dd-MM-yyyy}") %></span></li>
                                     <li>Thành phố: <span><%# Eval("City") %></span></li>
-                                    <li>Số lượng ứng viên: <span><%# Eval("NoPost") %></span></li>
+                                    <li>Số lượng ứng viên: <span><%# Eval("NoNumBerPost") %></span></li>
                                     <li>Loại công việc: <span><%# Eval("JobType") %></span></li>
                                     <li>Mức lương:  <span><%# Eval("Salary") %></span></li>
                                     <li>Ngày ứng tuyển: <span><%# DataBinder.Eval(Container.DataItem, "LastDateToApply", "{0:dd-MM-yyyy}") %></span></li>

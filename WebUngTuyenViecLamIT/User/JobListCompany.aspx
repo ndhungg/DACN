@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMaster.Master" AutoEventWireup="true" CodeBehind="JobList.aspx.cs" Inherits="WebUngTuyenViecLamIT.Admin.JobList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/Company/CompanyMaster.Master" AutoEventWireup="true" CodeBehind="JobListCompany.aspx.cs" Inherits="WebUngTuyenViecLamIT.User.JobListCompany" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -13,10 +13,9 @@
                  <div class="btn-group">
                        <asp:Label ID="lblMsg" runat="server"></asp:Label>
                  </div>
-              <div class="input-group h-25">
+                   <div class="input-group h-25">
                  <asp:HyperLink ID="linkBack" runat="server" NavigateUrl="~/Admin/ViewResume.aspx" CssClass="btn btn-primary" Visible="false">Quay Lại</asp:HyperLink>
              </div>
-
              </div>
            
 
@@ -35,17 +34,13 @@
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:BoundField>
 
-                          <asp:BoundField DataField="CompanyName" HeaderText="Tên Công Ty">
-                         <HeaderStyle HorizontalAlign="Center" />
-                         <ItemStyle HorizontalAlign="Center" />
-                         </asp:BoundField>
-
                          <asp:BoundField DataField="Title" HeaderText="Tên Công Việc">
                          <HeaderStyle HorizontalAlign="Center" />
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:BoundField>
 
                          <asp:BoundField DataField="JobType" HeaderText="Loại Công Việc">
+                         <HeaderStyle HorizontalAlign="Center" />
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:BoundField>
 
@@ -53,26 +48,27 @@
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:BoundField>
 
-                         <asp:BoundField DataField="Experience" HeaderText="Yêu Cầu Kinh Nghiệm">
+                          <asp:BoundField DataField="Experience" HeaderText="Yêu Cầu Kinh Nghiệm">
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:BoundField>
 
-                          <asp:BoundField DataField="LastDateToApply" HeaderText="Thời Gian Ứng Tuyển" DataFormatString="{0: dd-MM-yy}">
+                         <asp:BoundField DataField="Qualification" HeaderText="Trường Học / Bằng Cấp">
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:BoundField>
 
-                         <asp:BoundField DataField="CreateDate" HeaderText="Ngày Đăng Bài " DataFormatString="{0: dd-MM-yy}">
+                         <%--<asp:BoundField DataField="Experience" HeaderText="Yêu Cầu Kinh Nghiệm">
+                         <ItemStyle HorizontalAlign="Center" />
+                         </asp:BoundField>--%>
+
+                         <%--<asp:BoundField DataField="CompanyName" HeaderText="Tên Công Ty">
+                         <ItemStyle HorizontalAlign="Center" />
+                         </asp:BoundField>--%>
+
+                          <asp:BoundField DataField="LastDateToApply" HeaderText="Thời Gian Ứng Tuyển" DataFormatString="{0: dd-MM-yyyy}">
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:BoundField>
 
-                         <asp:TemplateField HeaderText =" Trạng Thái">
-                             <ItemTemplate>
-                                 <asp:Label ID="Label1" runat="server" Text=' <%# Eval("Status").ToString() == "False" ? "Chưa tải lên" : "Đã Tải lên" %>'></asp:Label>
-                             </ItemTemplate>
-                             <ItemStyle HorizontalAlign="Center" />
-                         </asp:TemplateField>
-                         
-                         <%--<asp:BoundField DataField="Status"  HeaderText="Trạng Thái">
+                        <%-- <asp:BoundField DataField="CreateDate" HeaderText="Ngày Đăng Bài " DataFormatString="{0: dd MMMM yyyy}">
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:BoundField>--%>
 

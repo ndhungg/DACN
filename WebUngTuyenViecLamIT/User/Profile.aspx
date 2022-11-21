@@ -79,9 +79,13 @@
                                     </div>
                                     <hr />
                                     <div class="row">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-6">
                                             <asp:Button ID="btnEdit" runat="server" Text="Sửa" CssClass="button button-contactForm boxed-btn"
                                                 CommandName="EditUserProfile" CommandArgument='<%# Eval("UserId") %>' />
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <asp:Button ID="btnListAppliedJob" runat="server" Text="Công ty ứng tuyển" CssClass="button button-contactForm boxed-btn"
+                                                CommandName="ListAppliedJob" CommandArgument='<%# Eval("UserId") %>' />
                                         </div>
                                     </div>
                                 </div>

@@ -18,12 +18,11 @@ namespace WebUngTuyenViecLamIT.Admin
         String query = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["admin"] == null)
+            if (Session["user"] == null && Session["company"] == null)
             {
-                Response.Redirect("../User/Login.aspx");
+                Response.Redirect("Login.aspx");
             }
 
-            Session["title"] = "Thêm Mới Công Việc";
             if (!IsPostBack)
             {
                 fillData();

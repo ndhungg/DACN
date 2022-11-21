@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMaster.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="ViewResume.aspx.cs" Inherits="WebUngTuyenViecLamIT.Admin.ViewResume" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/ViewUser/UserApplied.Master" AutoEventWireup="true" CodeBehind="ViewResumeJobs.aspx.cs" Inherits="WebUngTuyenViecLamIT.User.ViewResumeJobs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -7,7 +7,7 @@
             <div>
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
-            <h3 class="text-center">Danh sách Chi Tiết Thông Tin Ứng Viên </h3>
+            <h3 class="text-center">Danh sách Chi Tiết Thông Tin Ứng Viên, Ứng Tuyển</h3>
          </div>
 
          <div class="row mb-3 pt-sm-3">
@@ -23,6 +23,11 @@
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:BoundField>
 
+                         <asp:BoundField DataField="Name" HeaderText="Tên Ứng Viên">
+                         <HeaderStyle HorizontalAlign="Center" />
+                         <ItemStyle HorizontalAlign="Center" />
+                         </asp:BoundField>
+
                          <asp:BoundField DataField="CompanyName" HeaderText="Tên Công Ty">
                          <HeaderStyle HorizontalAlign="Center" />
                          <ItemStyle HorizontalAlign="Center" />
@@ -33,7 +38,7 @@
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:BoundField>
 
-                         <asp:BoundField DataField="Name" HeaderText="Tên Ứng Viên">
+                         <asp:BoundField DataField="JobType" HeaderText="Tên Loại Công Việc">
                          <HeaderStyle HorizontalAlign="Center" />
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:BoundField>
@@ -47,20 +52,20 @@
                          <ItemStyle HorizontalAlign="Center" />
                          </asp:BoundField>
 
-                           <asp:TemplateField HeaderText="Hồ Sơ">
+                         <%--  <asp:TemplateField HeaderText="Hồ Sơ">
                              <ItemTemplate>
                                  <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# DataBinder.Eval(Container,"DataItem.Resume","../{0}") %>'>
                                      <i class="fas fa-download"></i>  Download</asp:HyperLink>
                                  <asp:HiddenField ID="hdnJobId" runat="server" Value='<%# Eval("JobId") %>' Visible="false" />
                              </ItemTemplate>
                              <ItemStyle HorizontalAlign="Center" />
-                         </asp:TemplateField>
+                         </asp:TemplateField>--%>
 
-                        <%-- <asp:CommandField CausesValidation="false" HeaderText="Xóa" ShowDeleteButton="true"
+                         <asp:CommandField CausesValidation="false" HeaderText="Xóa" ShowDeleteButton="true"
                              DeleteImageUrl="../assets/img/icon/trashIcon-32.png" ButtonType="Image"> 
                          <HeaderStyle HorizontalAlign="Center" />
                               <ItemStyle HorizontalAlign="Center" />
-                         </asp:CommandField>--%>
+                         </asp:CommandField>
 
                      </Columns>
                      <HeaderStyle BackColor="#2196f3" ForeColor="White" />
