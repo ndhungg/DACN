@@ -246,6 +246,7 @@
     <Content Include="User\ResumeBuildCompany.aspx" />
     <Content Include="User\UserAppliedJobs.aspx" />
     <Content Include="User\ViewResumeJobs.aspx" />
+    <Content Include="User\ViewUserAppliedJobs.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -442,6 +443,13 @@
     </Compile>
     <Compile Include="User\ViewResumeJobs.aspx.designer.cs">
       <DependentUpon>ViewResumeJobs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\ViewUserAppliedJobs.aspx.cs">
+      <DependentUpon>ViewUserAppliedJobs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ViewUserAppliedJobs.aspx.designer.cs">
+      <DependentUpon>ViewUserAppliedJobs.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\ViewUser\UserApplied.Master.cs">
       <DependentUpon>UserApplied.Master</DependentUpon>

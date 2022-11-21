@@ -85,7 +85,7 @@
                         </li>
 
                         <li>
-                            <a href="ViewResumeJobs.aspx">
+                            <a href="ViewUserAppliedJobs.aspx">
                                 <div class="icon"><i class="fas fa-file-download"></i></div>
                                 <div class="title">Thông tin ứng viên ứng tuyển</div>
                             </a>

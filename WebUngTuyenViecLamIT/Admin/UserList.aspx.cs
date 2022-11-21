@@ -76,7 +76,7 @@ namespace WebUngTuyenViecLamIT.Admin
                         con.Open();
                         int r = cmd.ExecuteNonQuery();
                         con.Close();
-                        if(r > 0)
+                        if (r > 0)
                         {
                             query = "Delete from [User] where UserId = @id";
                             con = new SqlConnection(str);
@@ -101,6 +101,49 @@ namespace WebUngTuyenViecLamIT.Admin
                             {
                                 lblMsg.Text = "Xóa thất bại!!!";
                                 lblMsg.CssClass = "alert alert-warning";
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    string q = @"select a.AccountId from Account a, [User] u where a.AccountId = u.AccountId and u.UserId = @id";
+                    con = new SqlConnection(str);
+                    cmd = new SqlCommand(q, con);
+                    cmd.Parameters.AddWithValue("@id", userId);
+                    con.Open();
+                    sdr = cmd.ExecuteReader();
+                    if (sdr.HasRows)
+                    {
+                        if (sdr.Read())
+                        {
+                            query = "Delete from [User] where UserId = @id";
+                            con = new SqlConnection(str);
+                            cmd = new SqlCommand(query, con);
+                            cmd.Parameters.AddWithValue("@id", userId);
+                            con.Open();
+                            int r = cmd.ExecuteNonQuery();
+                            con.Close();
+                            if (r > 0)
+                            {
+                                string accountId = sdr["AccountId"].ToString();
+                                String query1 = "Delete Account where AccountId = @id";
+                                con = new SqlConnection(str);
+                                cmd = new SqlCommand(query1, con);
+                                cmd.Parameters.AddWithValue("@id", accountId);
+                                con.Open();
+                                int r1 = cmd.ExecuteNonQuery();
+                                con.Close();
+                                if (r1 > 0)
+                                {
+                                    lblMsg.Text = "Xóa thành công!!!";
+                                    lblMsg.CssClass = "alert alert-success";
+                                }
+                                else
+                                {
+                                    lblMsg.Text = "Xóa thất bại!!!";
+                                    lblMsg.CssClass = "alert alert-warning";
+                                }
                             }
                         }
                     }

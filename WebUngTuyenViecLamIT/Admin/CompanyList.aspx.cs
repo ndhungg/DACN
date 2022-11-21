@@ -99,6 +99,48 @@ namespace WebUngTuyenViecLamIT.Admin
                         }
                     }
                 }
+                else
+                {
+                    string q = @"Select a.AccountId from Company c inner join Account a on a.AccountId = c.AccountId
+                                    where c.CompanyId = @id ";
+                    con = new SqlConnection(str);
+                    cmd = new SqlCommand(q, con);
+                    cmd.Parameters.AddWithValue("@id", companyId);
+                    con.Open();
+                    sdr = cmd.ExecuteReader();
+                    if (sdr.HasRows)
+                    {
+                        if (sdr.Read())
+                        {
+                            string accountId = sdr["AccountId"].ToString();
+                            query = "Delete from Company where CompanyId = @id";
+                            con = new SqlConnection(str);
+                            cmd = new SqlCommand(query, con);
+                            cmd.Parameters.AddWithValue("@id", companyId);
+                            con.Open();
+                            int r = cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            if (r > 0)
+                            {
+                                String query1 = "Delete Account where AccountId = @id";
+                                con = new SqlConnection(str);
+                                cmd = new SqlCommand(query1, con);
+                                cmd.Parameters.AddWithValue("@id", accountId);
+                                con.Open();
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+                                lblMsg.Text = "Xóa thành công!!!";
+                                lblMsg.CssClass = "alert alert-success";
+                            }
+                            else
+                            {
+                                lblMsg.Text = "Xóa thất bại!!!";
+                                lblMsg.CssClass = "alert alert-warning";
+                            }
+                        }
+                    }
+                }
                 GridView1.EditIndex = -1;
                 showCompanyList();
             }
