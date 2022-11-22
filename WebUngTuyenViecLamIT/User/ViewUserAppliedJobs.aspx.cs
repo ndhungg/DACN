@@ -40,7 +40,7 @@ namespace WebUngTuyenViecLamIT.User
                       inner join [User] u on aj.UserId = u.UserId
                       inner join Jobs j on aj.JobId = j.JobId
 					  inner join Company c on c.CompanyId = j.CompanyId
-                      where c.CompanyId = @id and aj.Status = 0";
+                      where c.CompanyId = @id";
             cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@id", Session["companyId"].ToString());
             SqlDataAdapter sda = new SqlDataAdapter(cmd);

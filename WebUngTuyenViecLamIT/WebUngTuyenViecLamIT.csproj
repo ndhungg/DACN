@@ -204,8 +204,9 @@
     <Content Include="assets\img\team\1.png" />
     <Content Include="assets\img\team\2.png" />
     <Content Include="assets\img\team\3.png" />
-    <Content Include="assets\img\testmonial\1.png" />
-    <Content Include="assets\img\testmonial\testimonial-founder.png" />
+    <Content Include="assets\img\testmonial\1.jpg" />
+    <Content Include="assets\img\testmonial\2.jpg" />
+    <Content Include="assets\img\testmonial\3.png" />
     <Content Include="assets\js\animated.headline.js" />
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\contact.js" />

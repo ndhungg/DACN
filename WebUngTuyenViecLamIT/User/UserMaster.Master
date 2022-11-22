@@ -51,7 +51,7 @@
                             <div class="col-lg-3 col-md-2">
                                 <!-- Logo -->
                                 <div class="logo">
-                                    <a href="index.html">
+                                    <a href="Default.aspx">
                                         <img src="../assets/img/logo/logo.png" alt=""></a>
                                 </div>
                             </div>
@@ -63,7 +63,6 @@
                                             <ul id="navigation">
                                                 <li><a href="Default.aspx">Trang Chủ</a></li>
                                                 <li><a href="JobListing.aspx">Tìm Job</a></li>
-                                                <li><a href="about.aspx">About</a></li>
                                                 <li><a href="contact.aspx">Liên Hệ</a></li>
                                             </ul>
                                         </nav>
@@ -98,9 +97,9 @@
                             <div class="single-footer-caption mb-50">
                                 <div class="single-footer-caption mb-30">
                                     <div class="footer-tittle">
-                                        <h4>About Us</h4>
+                                        <h4>Châm ngôn sống</h4>
                                         <div class="footer-pera">
-                                            <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so behold.</p>
+                                            <p>Người làm việc chăm chỉ sẽ đánh bại người tài năng khi người tài năng không làm việc chăm chỉ.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -110,16 +109,15 @@
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                             <div class="single-footer-caption mb-50">
                                 <div class="footer-tittle">
-                                    <h4>Contact Info</h4>
+                                    <h4>Thông tin liên lạc</h4>
                                     <ul>
                                         <li>
                                             <p>
-                                                Address :Your address goes
-                                        here, your demo address.
+                                                Địa chỉ : Đường xxx, Quận xxx, TP.HCM
                                             </p>
                                         </li>
-                                        <li><a href="#">Phone : +8880 44338899</a></li>
-                                        <li><a href="#">Email : info@colorlib.com</a></li>
+                                        <li><a href="#">Điện Thoại : +0123456789</a></li>
+                                        <li><a href="#">Email : it@gmail.com</a></li>
                                     </ul>
                                 </div>
 
@@ -128,44 +126,19 @@
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                             <div class="single-footer-caption mb-50">
                                 <div class="footer-tittle">
-                                    <h4>Important Link</h4>
+                                    <h4>Link quan trọng</h4>
                                     <ul>
-                                        <li><a href="#">View Project</a></li>
-                                        <li><a href="#">Contact Us</a></li>
-                                        <li><a href="#">Testimonial</a></li>
-                                        <li><a href="#">Proparties</a></li>
-                                        <li><a href="#">Support</a></li>
+                                        <li><a href="Contact.aspx">Liên lạc</a></li>
+                                        <li><a href="JobListting.aspx">Tìm việc</a></li>
+                                        <li><a href="Login.aspx">Đăng nhập</a></li>
+                                        <li><a href="Login.aspx">Tạo tài khoản</a></li>
                                     </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Newsletter</h4>
-                                    <div class="footer-pera footer-pera2">
-                                        <p>Heaven fruitful doesn't over lesser in days. Appear creeping.</p>
-                                    </div>
-                                    <!-- Form -->
-                                    <div class="footer-form">
-                                        <div id="mc_embed_signup">
-                                            <%-- <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                                method="get" class="subscribe_form relative mail_part">--%>
-                                            <div class="subscribe_form relative mail_part">
-                                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                                    class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                                    onblur="this.placeholder = ' Email Address '">
-                                                <div class="mt-10 info"></div>
-                                                <%--</form>--%>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--  -->
-                    <div class="row footer-wejed justify-content-between">
+                 <%--   <div class="row footer-wejed justify-content-between">
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                             <!-- logo -->
                             <div class="footer-logo mb-20">
@@ -192,7 +165,7 @@
                                 <p>Talented Hunter</p>
                             </div>
                         </div>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
             <!-- footer-bottom area -->

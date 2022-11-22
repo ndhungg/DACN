@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-xl-6 col-lg-9 col-md-10">
                                 <div class="hero__caption">
-                                    <h1>Find the most exciting startup jobs</h1>
+                                    <h1>Tìm công việc khởi nghiệp tuyệt vời nhất</h1>
                                 </div>
                             </div>
                         </div>
@@ -53,8 +53,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle text-center">
-                            <span>FEATURED TOURS Packages</span>
-                            <h2>Browse Top Categories </h2>
+                            <h2>Top Các Công Việc Hàng Đầu </h2>
                         </div>
                     </div>
                 </div>
@@ -65,19 +64,7 @@
                                 <span class="flaticon-tour"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Design & Creative</a></h5>
-                                <span>(653)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-cms"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Design & Development</a></h5>
-                                <span>(658)</span>
+                               <h5><a href="JobListing.aspx">Thiết kế</a></h5>
                             </div>
                         </div>
                     </div>
@@ -87,8 +74,7 @@
                                 <span class="flaticon-report"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Sales & Marketing</a></h5>
-                                <span>(658)</span>
+                               <h5><a href="JobListing.aspx">Bán hàng</a></h5>
                             </div>
                         </div>
                     </div>
@@ -98,19 +84,7 @@
                                 <span class="flaticon-app"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Mobile Application</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-helmet"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Construction</a></h5>
-                                <span>(658)</span>
+                               <h5><a href="Joblisting.aspx">Ứng dụng di động </a></h5>
                             </div>
                         </div>
                     </div>
@@ -120,43 +94,20 @@
                                 <span class="flaticon-high-tech"></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Information Technology</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-real-estate"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Real Estate</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-content"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Content Writer</a></h5>
-                                <span>(658)</span>
+                               <h5><a href="Joblisting.aspx">Công nghệ thông tin</a></h5>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- More Btn -->
                 <!-- Section Button -->
-                <div class="row">
+               <%-- <div class="row">
                     <div class="col-lg-12">
                         <div class="browse-btn2 text-center mt-50">
                             <a href="job_listing.aspx" class="border-btn2">Browse All Sectors</a>
                         </div>
                     </div>
-                </div>
+                </div>--%>
             </div>
         </div>
         <!-- Our Services End -->
@@ -166,9 +117,7 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-10">
                         <div class="cv-caption text-center">
-                            <p class="pera1">FEATURED TOURS Packages</p>
-                            <p class="pera2"> Make a Difference with Your Online Resume!</p>
-                            <a href="#" class="border-btn2 border-btn4">Upload your cv</a>
+                            <p class="pera2"> Tạo sự khác biệt với sơ yếu lý lịch trực tuyến của bạn!</p>
                         </div>
                     </div>
                 </div>
@@ -182,75 +131,45 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle text-center">
-                            <span>Recent Job</span>
-                            <h2>Featured Jobs</h2>
+                            <h2>Công việc nổi bật</h2>
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="job_details.html"><img src="../assets/img/icon/job-list1.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="job_details.html">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
-                        <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="job_details.html"><img src="../assets/img/icon/job-list2.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="job_details.html">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
+                    <div class="col-xl-10 single-job-items mb-30">
+                         <asp:DataList ID="DataList1" runat="server" AllowPaging="True">
+                                    <ItemTemplate>
+                                        <div class="single-job-items mb-30">
+                                            <div class="job-items">
+                                                <div class="company-img">
+                                                    <a href="JobDetail.aspx?id=<%# Eval("JobId") %>">
+                                                        <img width="80" src="<%# GetImageUrl( Eval("CompanyImage")) %>" alt="">
+                                                    </a>
+                                                    &nbsp;&nbsp;&nbsp;
+                                                </div>
+                                                <div class="job-tittle job-tittle2">
+                                                    <a href="JobDetail.aspx?id=<%# Eval("JobId") %>">
+                                                        <h5><%# Eval("Title") %></h5>
+                                                    </a>
+                                                    <ul>
+                                                        <li><%# Eval("CompanyName") %></li>
+                                                        <li><i class="fas fa-map-marker-alt"></i><%# Eval("City") %> , <%# Eval("Country") %></li>
+                                                        <li><%# Eval("Salary") %></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="items-link items-link2 f-right">
+                                                <a href="JobDetail.aspx?id=<%# Eval("JobId") %>"><%# Eval("JobType") %></a>
+                                                <span class="text-secondary">
+                                                    <i class="fas fa-clock pr-1"></i>
+                                                    <%# RelativeDate(Convert.ToDateTime(Eval("CreateDate"))) %>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:DataList>
                          <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="job_details.html"><img src="../assets/img/icon/job-list3.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="job_details.html">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
-                         <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
+<%--                        <div class="single-job-items mb-30">
                             <div class="job-items">
                                 <div class="company-img">
                                     <a href="job_details.html"><img src="../assets/img/icon/job-list4.png" alt=""></a>
@@ -268,7 +187,7 @@
                                 <a href="job_details.html">Full Time</a>
                                 <span>7 hours ago</span>
                             </div>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
             </div>
@@ -281,8 +200,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle white-text text-center">
-                            <span>Apply process</span>
-                            <h2> How it works</h2>
+                            <h2>Hướng dẫn tìm kiếm công việc phù hợp với bạn</h2>
                         </div>
                     </div>
                 </div>
@@ -294,8 +212,8 @@
                                 <span class="flaticon-search"></span>
                             </div>
                             <div class="process-cap">
-                               <h5>1. Search a job</h5>
-                               <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                               <h5>1. Tìm công việc</h5>
+                               <p>Lựa chọn công việc yêu thích của bạn .</p>
                             </div>
                         </div>
                     </div>
@@ -305,8 +223,8 @@
                                 <span class="flaticon-curriculum-vitae"></span>
                             </div>
                             <div class="process-cap">
-                               <h5>2. Apply for job</h5>
-                               <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                               <h5>2. Tham gia ứng tuyển</h5>
+                               <p>Ứng tuyển vào công ty yêu thích của bạn</p>
                             </div>
                         </div>
                     </div>
@@ -316,8 +234,8 @@
                                 <span class="flaticon-tour"></span>
                             </div>
                             <div class="process-cap">
-                               <h5>3. Get your job</h5>
-                               <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                               <h5>3. Nhận công việc của bạn</h5>
+                               <p>Chờ phản hồi từ phía nhà tuyển dụng .</p>
                             </div>
                         </div>
                     </div>
@@ -339,13 +257,12 @@
                                     <!-- founder -->
                                     <div class="testimonial-founder  ">
                                         <div class="founder-img mb-30">
-                                            <img src="../assets/img/testmonial/testimonial-founder.png" alt="">
-                                            <span>Margaret Lawson</span>
-                                            <p>Creative Director</p>
+                                            <img src="../assets/img/testmonial/3.png" alt="">
+                                            <span>Brian Tracy</span>
                                         </div>
                                     </div>
                                     <div class="testimonial-top-cap">
-                                        <p>“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
+                                        <p>“Bạn càng tìm kiếm sự bảo đảm, bạn càng ít có nó. Nhưng bạn càng tìm kiếm cơ hội, bạn càng có thể đạt được sự bảo đảm mà mình muốn .”</p>
                                     </div>
                                 </div>
                             </div>
@@ -356,13 +273,12 @@
                                     <!-- founder -->
                                     <div class="testimonial-founder  ">
                                         <div class="founder-img mb-30">
-                                            <img src="../assets/img/testmonial/testimonial-founder.png" alt="">
-                                            <span>Margaret Lawson</span>
-                                            <p>Creative Director</p>
+                                            <img src="../assets/img/testmonial/3.png" alt="">
+                                            <span>Bill Gates</span>
                                         </div>
                                     </div>
                                     <div class="testimonial-top-cap">
-                                        <p>“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
+                                        <p>“Khi bạn gặp khó khăn hay bế tắc trong công việc thì đừng có oán trách số phận. Điều bạn học được khi gặp trắc trở chính là kinh nghiệm và bài học để lần sau không bao giờ mắc phải nữa .”</p>
                                     </div>
                                 </div>
                             </div>
@@ -373,13 +289,12 @@
                                     <!-- founder -->
                                     <div class="testimonial-founder  ">
                                         <div class="founder-img mb-30">
-                                            <img src="../assets/img/testmonial/testimonial-founder.png" alt="">
-                                            <span>Margaret Lawson</span>
-                                            <p>Creative Director</p>
+                                            <img src="../assets/img/testmonial/3.png" alt="">
+                                            <span>Jack Ma</span>
                                         </div>
                                     </div>
                                     <div class="testimonial-top-cap">
-                                        <p>“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
+                                        <p>“Nếu bạn muốn phát triển, hãy tìm kiếm một cơ hội thật tốt. Nếu bạn muốn có một công ty lớn, bạn hãy nghĩ đến những vấn đề mà bạn phải đối mặt trước khi nghĩ đến thành công .”</p>
                                     </div>
                                 </div>
                             </div>
@@ -390,35 +305,6 @@
         </div>
         <!-- Testimonial End -->
          <!-- Support Company Start-->
-         <div class="support-company-area support-padding fix">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="right-caption">
-                            <!-- Section Tittle -->
-                            <div class="section-tittle section-tittle2">
-                                <span>What we are doing</span>
-                                <h2>24k Talented people are getting Jobs</h2>
-                            </div>
-                            <div class="support-caption">
-                                <p class="pera-top">Mollit anim laborum duis au dolor in voluptate velit ess cillum dolore eu lore dsu quality mollit anim laborumuis au dolor in voluptate velit cillum.</p>
-                                <p>Mollit anim laborum.Duis aute irufg dhjkolohr in re voluptate velit esscillumlore eu quife nrulla parihatur. Excghcepteur signjnt occa cupidatat non inulpadeserunt mollit aboru. temnthp incididbnt ut labore mollit anim laborum suis aute.</p>
-                                <a href="about.html" class="btn post-btn">Post a job</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="support-location-img">
-                            <img src="../assets/img/service/support-img.jpg" alt="">
-                            <div class="support-img-cap text-center">
-                                <p>Since</p>
-                                <span>1994</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Support Company End-->
         <!-- Blog Area Start -->
         <div class="home-blog-area blog-h-padding">
@@ -427,8 +313,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle text-center">
-                            <span>Our latest blog</span>
-                            <h2>Our recent news</h2>
+                            <h2>Tin tức nổi bật</h2>
                         </div>
                     </div>
                 </div>
@@ -439,15 +324,10 @@
                                 <div class="blog-img">
                                     <img src="../assets/img/blog/home-blog1.jpg" alt="">
                                     <!-- Blog date -->
-                                    <div class="blog-date text-center">
-                                        <span>24</span>
-                                        <p>Now</p>
-                                    </div>
                                 </div>
                                 <div class="blog-cap">
-                                    <p>|   Properties</p>
-                                    <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
-                                    <a href="#" class="more-btn">Read more »</a>
+                                    <h3><a href="single-blog.html">Cách tìm và lựa chọn công việc hiệu quả .</a></h3>
+                                    <a href="#" class="more-btn">Đọc ngay »</a>
                                 </div>
                             </div>
                         </div>
@@ -458,15 +338,10 @@
                                 <div class="blog-img">
                                     <img src="../assets/img/blog/home-blog2.jpg" alt="">
                                     <!-- Blog date -->
-                                    <div class="blog-date text-center">
-                                        <span>24</span>
-                                        <p>Now</p>
-                                    </div>
                                 </div>
                                 <div class="blog-cap">
-                                    <p>|   Properties</p>
-                                    <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
-                                    <a href="#" class="more-btn">Read more »</a>
+                                    <h3><a href="single-blog.html">Cách gây ấn tượng với nhà tuyển dụng</a></h3>
+                                    <a href="#" class="more-btn">Đọc ngay »</a>
                                 </div>
                             </div>
                         </div>

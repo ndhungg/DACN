@@ -16,6 +16,7 @@ namespace WebUngTuyenViecLamIT.User
         SqlCommand cmd;
         String str = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         SqlDataAdapter sda;
+        SqlDataReader sdr;
         DataTable dt,dt1;
         public string jobTitle = string.Empty;
         string appliedJobs = "Ứng Tuyển Ngay";
@@ -41,9 +42,9 @@ namespace WebUngTuyenViecLamIT.User
         private void showJobDetail()
         {
             con = new SqlConnection(str);
-            string query = @"Select j.JobId, j.Title,j.NoNumberPost,j.Description, j.Qualification, J.Experience, j.Salary,j.JobType,
+            string query = @"Select j.JobId, j.Title,j.NoNumberPost,j.Description, j.Qualification, j.Experience, j.Salary,j.JobType,
                             c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate, j.Specialization, j.LastDateToApply, c.Address,c.Website,c.Email
-                            from Jobs j, Company c where c.CompanyId = j.CompanyId and j.Status = 1 and j.JobId = @id";
+                            from Jobs j, Company c where c.CompanyId = j.CompanyId and j.JobId = @id";
             cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@id",Request.QueryString["id"]);
             sda = new SqlDataAdapter(cmd);
@@ -77,13 +78,11 @@ namespace WebUngTuyenViecLamIT.User
                 {
                     try
                     {
-                        int status = 0;
                         con = new SqlConnection(str);
-                        string query = "Insert into AppliedJobs values (@JobId, @UserId,@Status)";
+                        string query = "Insert into AppliedJobs values (@JobId, @UserId)";
                         cmd = new SqlCommand(query, con);
                         cmd.Parameters.AddWithValue("@JobId", Request.QueryString["id"]);
                         cmd.Parameters.AddWithValue("@UserId", Session["userId"]);
-                        cmd.Parameters.AddWithValue("@Status", status);
                         con.Open();
                         int r = cmd.ExecuteNonQuery();
                         if (r > 0)
@@ -140,15 +139,14 @@ namespace WebUngTuyenViecLamIT.User
             }
         }
 
+
         //cách fix lấy ra mã ứng tuyển của người dùng và fix lại funcition isApplied
+        // nếu status = 1 đã hủy ứng tuyển, nếu status = 0 chưa ứng tuyển
+
         bool isApplied()
         {
             con = new SqlConnection(str);
-            string query = @"Select aj.AppliedJobsId, aj.JobId, aj.Status, aj.UserId
-                            from AppliedJobs aj
-                            inner join Jobs j on j.JobId = aj.JobId
-                            inner join [User] u on u.UserId = aj.UserId
-                            where u.UserId = @UserId and j.JobId = @JobId and aj.Status = 1";
+            string query = @"Select * from AppliedJobs where UserId = @UserId and JobId = @JobId";
             cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@UserId", Session["userId"]);
             cmd.Parameters.AddWithValue("@JobId", Request.QueryString["id"]);
@@ -164,5 +162,7 @@ namespace WebUngTuyenViecLamIT.User
                 return false;
             }
         }
+
+
     }
 }

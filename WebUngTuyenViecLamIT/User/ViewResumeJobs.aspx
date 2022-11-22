@@ -53,13 +53,6 @@
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
 
-                        <asp:TemplateField HeaderText=" Trạng Thái ">
-                            <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text=' <%# Eval("Status").ToString() == "False" ? "Đã ứng tuyển" : "Chưa ứng tuyển" %>'></asp:Label>
-                            </ItemTemplate>
-                            <ItemStyle HorizontalAlign="Center" />
-                        </asp:TemplateField>
-
                         <asp:CommandField CausesValidation="false" HeaderText="Hủy ứng tuyển" ShowDeleteButton="true"
                             DeleteImageUrl="../assets/img/icon/cancel-32.png" ButtonType="Image">
                             <HeaderStyle HorizontalAlign="Center" />
