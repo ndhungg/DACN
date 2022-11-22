@@ -11,12 +11,23 @@ namespace WebUngTuyenViecLamIT.User.ViewUser
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["user"] == null && Session["company"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
 
+            if (!IsPostBack)
+            {
+
+            }
         }
 
         protected void btnGoBack_Click(object sender, EventArgs e)
         {
-
+            if (Session["user"] != null && Session["company"] == null)
+            {
+                Response.Redirect("Profile.aspx");
+            }
         }
     }
 }

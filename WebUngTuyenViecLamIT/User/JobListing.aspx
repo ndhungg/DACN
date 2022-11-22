@@ -160,31 +160,33 @@
                                 <!-- Select job items start -->
                                 <div class="select-job-items2">
                                     <asp:DropDownList ID="ddlCountry" runat="server" name="select" CssClass="form-control w-100"
-                                        DataSourceID="SqlDataSource1" AppendDataBoundItems="True" DataTextField="Name"
-                                        DataValueField="Name" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" AutoPostBack="true">
-                                        <asp:ListItem Value="0">Quốc Gia</asp:ListItem>
+                                        DataSourceID="SqlDataSource1" AppendDataBoundItems="True" DataTextField="City"
+                                        DataValueField="City" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" AutoPostBack="true">
+                                        <asp:ListItem Value="0">Thành Phố</asp:ListItem>
                                     </asp:DropDownList>
 
                                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:WebSiteTuyenDungConnectionString %>"
-                                        SelectCommand="SELECT [Name] FROM [Country]"></asp:SqlDataSource>
+                                        SelectCommand="SELECT DISTINCT [City] FROM [Company]"></asp:SqlDataSource>
                                 </div>
 
-
+                                <div class="small-section-tittle2">
+                                    <h4>Mức Lương</h4>
+                                </div>
                                 <div class="select-job-items2">
-                                    <asp:DropDownList ID="ddbCity" runat="server" name="select" CssClass="form-control w-100"
-                                        DataSourceID="SqlDataSource1" AppendDataBoundItems="True" DataTextField="Name"
-                                        DataValueField="Name" OnSelectedIndexChanged="ddbCity_SelectedIndexChanged" AutoPostBack="true">
-                                        <asp:ListItem Value="0">Quốc Gia</asp:ListItem>
+                                    <asp:DropDownList ID="ddbSalary" runat="server" name="select" CssClass="form-control w-100"
+                                        DataSourceID="SqlDataSource2" AppendDataBoundItems="True" DataTextField="Salary"
+                                        DataValueField="Salary" OnSelectedIndexChanged="ddbSalary_SelectedIndexChanged" AutoPostBack="true">
+                                        <asp:ListItem Value="0">0 USD</asp:ListItem>
                                     </asp:DropDownList>
 
                                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:WebSiteTuyenDungConnectionString %>"
-                                        SelectCommand="SELECT [Name] FROM [Country]"></asp:SqlDataSource>
+                                        SelectCommand="SELECT DISTINCT [Salary] FROM [Jobs]"></asp:SqlDataSource>
                                 </div>
 
                                 <!--  Select job items End-->
 
                                 <!-- select-Categories start -->
-                                <div class="select-Categories pt-80 pb-50">
+                                <div class="select-Categories pt-80 pb-20">
                                     <div class="small-section-tittle2">
                                         <h4>Loại Công Việc</h4>
                                     </div>
@@ -206,7 +208,7 @@
                             <!-- single three -->
                             <div class="single-listing">
                                 <!-- select-Categories start -->
-                                <div class="select-Categories pb-50 mb-20">
+                                <div class="select-Categories pb-25 mb-20">
                                     <div class="small-section-tittle2">
                                         <h4>Ngày Đăng Bài</h4>
                                     </div>
@@ -255,7 +257,7 @@
                                 <!-- Count of Job list End -->
 
                                 <!-- single-job-content -->
-                                <asp:DataList ID="DataList1" runat="server" PageSize="5" AllowPaging="True">
+                                <asp:DataList ID="DataList1" runat="server" AllowPaging="True">
                                     <ItemTemplate>
                                         <div class="single-job-items mb-30">
                                             <div class="job-items">
@@ -284,6 +286,16 @@
                                                 </span>
                                             </div>
                                         </div>
+
+                                       <%-- <asp:DataPager ID="DataPager1" runat="server" PageSize="3" PagedControlID="DataList1">
+                                            <Fields>
+                                                <asp:NextPreviousPagerField ButtonType="Button" ButtonCssClass="btn primary" ShowFirstPageButton="true" ShowPreviousPageButton="true" ShowNextPageButton="false" />
+                                                <asp:NumericPagerField ButtonType="Button" />
+                                                <asp:NextPreviousPagerField ButtonType="Button" ShowNextPageButton="true" ShowLastPageButton="true" ShowPreviousPageButton="false" />
+                                            </Fields>
+                                        </asp:DataPager>--%>
+
+
                                     </ItemTemplate>
                                 </asp:DataList>
                             </div>

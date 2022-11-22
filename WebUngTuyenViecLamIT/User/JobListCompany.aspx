@@ -13,9 +13,6 @@
                  <div class="btn-group">
                        <asp:Label ID="lblMsg" runat="server"></asp:Label>
                  </div>
-                   <div class="input-group h-25">
-                 <asp:HyperLink ID="linkBack" runat="server" NavigateUrl="~/Admin/ViewResume.aspx" CssClass="btn btn-primary" Visible="false">Quay Lại</asp:HyperLink>
-             </div>
              </div>
            
 

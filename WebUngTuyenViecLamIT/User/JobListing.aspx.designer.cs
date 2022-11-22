@@ -33,13 +33,13 @@ namespace WebUngTuyenViecLamIT.User
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
 
         /// <summary>
-        /// ddbCity control.
+        /// ddbSalary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddbCity;
+        protected global::System.Web.UI.WebControls.DropDownList ddbSalary;
 
         /// <summary>
         /// SqlDataSource2 control.

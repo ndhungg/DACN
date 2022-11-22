@@ -77,11 +77,13 @@ namespace WebUngTuyenViecLamIT.User
                 {
                     try
                     {
+                        int status = 0;
                         con = new SqlConnection(str);
-                        string query = "Insert into AppliedJobs values (@JobId, @UserId)";
+                        string query = "Insert into AppliedJobs values (@JobId, @UserId,@Status)";
                         cmd = new SqlCommand(query, con);
                         cmd.Parameters.AddWithValue("@JobId", Request.QueryString["id"]);
                         cmd.Parameters.AddWithValue("@UserId", Session["userId"]);
+                        cmd.Parameters.AddWithValue("@Status", status);
                         con.Open();
                         int r = cmd.ExecuteNonQuery();
                         if (r > 0)
@@ -137,10 +139,16 @@ namespace WebUngTuyenViecLamIT.User
                 }
             }
         }
+
+        //cách fix lấy ra mã ứng tuyển của người dùng và fix lại funcition isApplied
         bool isApplied()
         {
             con = new SqlConnection(str);
-            string query = @"Select * from AppliedJobs where UserId = @UserId and JobId = @JobId";
+            string query = @"Select aj.AppliedJobsId, aj.JobId, aj.Status, aj.UserId
+                            from AppliedJobs aj
+                            inner join Jobs j on j.JobId = aj.JobId
+                            inner join [User] u on u.UserId = aj.UserId
+                            where u.UserId = @UserId and j.JobId = @JobId and aj.Status = 1";
             cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@UserId", Session["userId"]);
             cmd.Parameters.AddWithValue("@JobId", Request.QueryString["id"]);

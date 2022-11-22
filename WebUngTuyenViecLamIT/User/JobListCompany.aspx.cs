@@ -51,10 +51,6 @@ namespace WebUngTuyenViecLamIT.User
             sda.Fill(dt);
             GridView1.DataSource = dt;
             GridView1.DataBind();
-            if (Request.QueryString["id"] != null)
-            {
-                linkBack.Visible = true;
-            }
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -137,8 +133,5 @@ namespace WebUngTuyenViecLamIT.User
                 }
             }
         }
-
-
-
     }
 }

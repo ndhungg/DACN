@@ -41,10 +41,10 @@ namespace WebUngTuyenViecLamIT.User
             String query = String.Empty;
             con = new SqlConnection(str);
             query = @"Select Row_Number() over(Order by (Select 1)) as [STT], aj.AppliedJobsId, aj.JobId, u.Name, c.CompanyName, j.Title,
-                      c.Mobile, j.JobType, c.Email from AppliedJobs aj
+                      c.Mobile, j.JobType, c.Email, aj.Status from AppliedJobs aj
                       inner join [User] u on aj.UserId = u.UserId
                       inner join Jobs j on aj.JobId = j.JobId
-					  inner join Company c on c.CompanyId = j.CompanyId where u.UserId = @id";
+					  inner join Company c on c.CompanyId = j.CompanyId where u.UserId = @id and aj.Status = 0";
             cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@id", Session["userId"].ToString());
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -82,7 +82,7 @@ namespace WebUngTuyenViecLamIT.User
             {
                 GridViewRow row = GridView1.Rows[e.RowIndex];
                 int appliedJobsId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
-                String query = @"Delete from AppliedJobs where AppliedJobsId = @id";
+                String query = @"update AppliedJobs set Status = 1 where AppliedJobsId = @id";
                 con = new SqlConnection(str);
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@id", appliedJobsId);
@@ -90,12 +90,12 @@ namespace WebUngTuyenViecLamIT.User
                 int r = cmd.ExecuteNonQuery();
                 if (r > 0)
                 {
-                    lblMsg.Text = "Xóa thành công!!!";
+                    lblMsg.Text = "Hủy ứng tuyển thành công!!!";
                     lblMsg.CssClass = "alert alert-success";
                 }
                 else
                 {
-                    lblMsg.Text = "Xóa thất bại!!!";
+                    lblMsg.Text = "Hủy ứng tuyển thất bại!!!";
                     lblMsg.CssClass = "alert alert-warning";
                 }
                 GridView1.EditIndex = -1;

@@ -116,8 +116,9 @@ namespace WebUngTuyenViecLamIT.User
             if(ddlCountry.SelectedValue != "0")
             {
                 con = new SqlConnection(str);
-                string query = @"Select JobId,Title,Salary,JobType,CompanyName,CompanyImage,City,Country,CreateDate from Jobs
-                                where Country like N'%" + ddlCountry.SelectedValue + "%' ";
+                string query = @"Select j.JobId,j.Title,j.Salary,j.JobType,c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate 
+                                from Jobs j, Company c
+                                where j.CompanyId = c.CompanyId and j.Status = 1 and c.City like N'%" + ddlCountry.SelectedValue + "%' ";
                 cmd = new SqlCommand(query, con);
                 sda = new SqlDataAdapter(cmd);
                 dt = new DataTable();
@@ -139,8 +140,9 @@ namespace WebUngTuyenViecLamIT.User
             if(jobType != "")
             {
                 con = new SqlConnection(str);
-                string query = @"Select JobId,Title,Salary,JobType,CompanyName,CompanyImage,City,Country,CreateDate from Jobs
-                                where JobType IN (" + jobType + ")";
+                string query = @"Select j.JobId,j.Title,j.Salary,j.JobType,c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate 
+                                from Jobs j, Company c
+                                where j.CompanyId = c.CompanyId and j.Status = 1 and j.JobType IN (" + jobType + ")";
                 cmd = new SqlCommand(query, con);
                 sda = new SqlDataAdapter(cmd);
                 dt = new DataTable();
@@ -174,8 +176,9 @@ namespace WebUngTuyenViecLamIT.User
                 string postDate = string.Empty;
                 postDate = selectedRadioButton();
                 con = new SqlConnection(str);
-                string query = @"Select JobId,Title,Salary,JobType,CompanyName,CompanyImage,City,Country,CreateDate from Jobs
-                                where Convert(DATE, CreateDate) " + postDate + " ";
+                string query = @"Select j.JobId,j.Title,j.Salary,j.JobType,c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate 
+                                from Jobs j, Company c
+                                where j.CompanyId = c.CompanyId and j.Status = 1 and Convert(DATE, j.CreateDate) " + postDate + " ";
                 cmd = new SqlCommand(query, con);
                 sda = new SqlDataAdapter(cmd);
                 dt = new DataTable();
@@ -232,7 +235,13 @@ namespace WebUngTuyenViecLamIT.User
                 con = new SqlConnection(str);
                 if (ddlCountry.SelectedValue != "0")
                 {
-                    queryList.Add(" Country like N'%" + ddlCountry.SelectedValue + "%' ");
+                    queryList.Add(" j.CompanyId = c.CompanyId and j.Status = 1 and c.City like N'%" + ddlCountry.SelectedValue + "%' ");
+                    isCondition = true;
+                }
+
+                if (ddbSalary.SelectedValue != "0")
+                {
+                    queryList.Add(" j.CompanyId = c.CompanyId and j.Status = 1 and c.Salary like N'%" + ddbSalary.SelectedValue + "%' ");
                     isCondition = true;
                 }
 
@@ -240,14 +249,14 @@ namespace WebUngTuyenViecLamIT.User
 
                 if (jobType != "")
                 {
-                    queryList.Add(" JobType IN (" + jobType + ") ");
+                    queryList.Add(" j.CompanyId = c.CompanyId and j.Status = 1 and j.JobType IN (" + jobType + ") ");
                     isCondition = true;
                 }
 
                 if (RadioButtonList1.SelectedValue != "0")
                 {
                     postDate = selectedRadioButton();
-                    queryList.Add(" Convert(DATE, CreateDate) " + postDate);
+                    queryList.Add(" j.CompanyId = c.CompanyId and j.Status = 1 and j.Convert(DATE, CreateDate) " + postDate);
                     isCondition = true;
                 }
 
@@ -257,12 +266,12 @@ namespace WebUngTuyenViecLamIT.User
                         subquery += a + " and ";
                     }
                     subquery = subquery.Remove(subquery.LastIndexOf("and"), 3);
-                    query = @"Select JobId,Title,Salary,JobType,CompanyName,CompanyImage,City,Country,CreateDate from Jobs
-                              where " + subquery + " ";
+                    query = @"Select j.JobId,j.Title,j.Salary,j.JobType,c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate from Jobs j, Company c where j.Status = 1 and j.CompanyId = c.CompanyId
+                             " + subquery + " ";
                 }
                 else
                 {
-                    query = @"Select JobId,Title,Salary,JobType,CompanyName,CompanyImage,City,Country,CreateDate from Jobs";
+                    query = @"Select j.JobId,j.Title,j.Salary,j.JobType,c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate from Jobs j, Company c where j.Status = 1 and j.CompanyId = c.CompanyId";
                 }
                 cmd = new SqlCommand(query, con);
                 sda = new SqlDataAdapter(cmd);
@@ -286,16 +295,33 @@ namespace WebUngTuyenViecLamIT.User
         protected void lbReset_Click(object sender, EventArgs e)
         {
             ddlCountry.ClearSelection();
+            ddbSalary.ClearSelection();
             CheckBoxList1.ClearSelection();
             RadioButtonList1.SelectedValue = "0";
             RBSelectedColorChange();
             showJobList();
-
         }
 
-        protected void ddbCity_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddbSalary_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (ddbSalary.SelectedValue != "0")
+            {
+                con = new SqlConnection(str);
+                string query = @"Select j.JobId,j.Title,j.Salary,j.JobType,c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate 
+                                from Jobs j, Company c
+                                where j.CompanyId = c.CompanyId and j.Status = 1 and j.Salary like N'%" + ddbSalary.SelectedValue + "%' ";
+                cmd = new SqlCommand(query, con);
+                sda = new SqlDataAdapter(cmd);
+                dt = new DataTable();
+                sda.Fill(dt);
+                showJobList();
+                RBSelectedColorChange();
+            }
+            else
+            {
+                showJobList();
+                RBSelectedColorChange();
+            }
         }
     }
 }
