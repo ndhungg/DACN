@@ -158,6 +158,9 @@
     <Content Include="assets\img\icon\job-list2.png" />
     <Content Include="assets\img\icon\job-list3.png" />
     <Content Include="assets\img\icon\job-list4.png" />
+    <Content Include="assets\img\icon\question-32.png" />
+    <Content Include="assets\img\icon\reply-32.png" />
+    <Content Include="assets\img\icon\send-32.png" />
     <Content Include="assets\img\icon\trashIcon-32.png" />
     <Content Include="assets\img\icon\update-32.png" />
     <Content Include="assets\img\logo\form-iocn.jpg" />
@@ -235,18 +238,25 @@
     <Content Include="Images\No_image.png" />
     <Content Include="User\About.aspx" />
     <Content Include="User\Contact.aspx" />
-    <Content Include="User\Default.aspx" />
+    <Content Include="User\default.aspx" />
     <Content Include="User\EditJob.aspx" />
+    <Content Include="User\EditQuestionCompany.aspx" />
     <Content Include="User\JobDetail.aspx" />
     <Content Include="User\JobListCompany.aspx" />
     <Content Include="User\JobListing.aspx" />
+    <Content Include="User\ListFeedBackUser.aspx" />
+    <Content Include="User\ListQuestion.aspx" />
+    <Content Include="User\ListQuestionUser.aspx" />
     <Content Include="User\Login.aspx" />
     <Content Include="User\NewJob.aspx" />
     <Content Include="User\Profile.aspx" />
     <Content Include="User\ProfileCompany.aspx" />
+    <Content Include="User\QuestionUser.aspx" />
     <Content Include="User\Register.aspx" />
     <Content Include="User\ResumeBuild.aspx" />
     <Content Include="User\ResumeBuildCompany.aspx" />
+    <Content Include="User\SendFeedBack.aspx" />
+    <Content Include="User\SendQuestionCompany.aspx" />
     <Content Include="User\UserAppliedJobs.aspx" />
     <Content Include="User\ViewResumeJobs.aspx" />
     <Content Include="User\ViewUserAppliedJobs.aspx" />
@@ -342,12 +352,12 @@
     <Compile Include="User\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="User\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="User\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="User\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\EditJob.aspx.cs">
       <DependentUpon>EditJob.aspx</DependentUpon>
@@ -355,6 +365,13 @@
     </Compile>
     <Compile Include="User\EditJob.aspx.designer.cs">
       <DependentUpon>EditJob.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\EditQuestionCompany.aspx.cs">
+      <DependentUpon>EditQuestionCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\EditQuestionCompany.aspx.designer.cs">
+      <DependentUpon>EditQuestionCompany.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\JobDetail.aspx.cs">
       <DependentUpon>JobDetail.aspx</DependentUpon>
@@ -376,6 +393,27 @@
     </Compile>
     <Compile Include="User\JobListing.aspx.designer.cs">
       <DependentUpon>JobListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\ListFeedBackUser.aspx.cs">
+      <DependentUpon>ListFeedBackUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ListFeedBackUser.aspx.designer.cs">
+      <DependentUpon>ListFeedBackUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\ListQuestion.aspx.cs">
+      <DependentUpon>ListQuestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ListQuestion.aspx.designer.cs">
+      <DependentUpon>ListQuestion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\ListQuestionUser.aspx.cs">
+      <DependentUpon>ListQuestionUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ListQuestionUser.aspx.designer.cs">
+      <DependentUpon>ListQuestionUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -405,6 +443,13 @@
     <Compile Include="User\ProfileCompany.aspx.designer.cs">
       <DependentUpon>ProfileCompany.aspx</DependentUpon>
     </Compile>
+    <Compile Include="User\QuestionUser.aspx.cs">
+      <DependentUpon>QuestionUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\QuestionUser.aspx.designer.cs">
+      <DependentUpon>QuestionUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -425,6 +470,20 @@
     </Compile>
     <Compile Include="User\ResumeBuildCompany.aspx.designer.cs">
       <DependentUpon>ResumeBuildCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\SendFeedBack.aspx.cs">
+      <DependentUpon>SendFeedBack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\SendFeedBack.aspx.designer.cs">
+      <DependentUpon>SendFeedBack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\SendQuestionCompany.aspx.cs">
+      <DependentUpon>SendQuestionCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\SendQuestionCompany.aspx.designer.cs">
+      <DependentUpon>SendQuestionCompany.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\UserAppliedJobs.aspx.cs">
       <DependentUpon>UserAppliedJobs.aspx</DependentUpon>
@@ -543,7 +602,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50162</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50162/</IISUrl>
+          <IISUrl>http://localhost:5000/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

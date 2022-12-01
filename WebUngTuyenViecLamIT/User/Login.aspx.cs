@@ -15,7 +15,7 @@ namespace WebUngTuyenViecLamIT.User
         SqlCommand cmd;
         SqlDataReader sdr;
         String str = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
-        String username, password = string.Empty;
+        string username, password,status = string.Empty;
 
         public static int id;
 
@@ -30,13 +30,14 @@ namespace WebUngTuyenViecLamIT.User
             {
                 username = ConfigurationManager.AppSettings["UserName"];
                 password = ConfigurationManager.AppSettings["PassWord"];
+                status = ConfigurationManager.AppSettings["Status"];
 
                 if (ddlLoginType.SelectedValue == "Ứng Viên")
                 {
                     con = new SqlConnection(str);
                     String query = @"select u.UserId,a.UserName, u.Name, u.Address, u.Mobile, u.Email,u.Country
                                      from Account a, [User] u
-                                     where a.PassWord = @PassWord and a.UserName = @UserName and a.AccountId = u.AccountId";
+                                     where a.PassWord = @PassWord and a.UserName = @UserName and a.AccountId = u.AccountId and a.Status = 1";
 
                     cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@Username", txtUserName.Text.Trim());
@@ -63,7 +64,7 @@ namespace WebUngTuyenViecLamIT.User
                     con = new SqlConnection(str);
                     String query = @"select c.CompanyId, a.UserName, c.CompanyName, c.Address, c.Mobile, c.Email,c.Satus,c.Country
                                      from Account a, Company c
-                                     where a.PassWord = @PassWord and a.UserName = @UserName and a.AccountId = c.AccountId";
+                                     where a.PassWord = @PassWord and a.UserName = @UserName and a.AccountId = c.AccountId and a.Status = 1";
 
                     cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@Username", txtUserName.Text.Trim());
@@ -88,7 +89,8 @@ namespace WebUngTuyenViecLamIT.User
                 }
                 else
                 {
-                    if (username == txtUserName.Text.Trim() && password == txtPassWord.Text.Trim())
+                    int s = Convert.ToInt32(status);
+                    if (username == txtUserName.Text.Trim() && password == txtPassWord.Text.Trim() && s == 1)
                     {
                         Session["admin"] = username;
                         Response.Redirect("../Admin/Dashboard.aspx", false);

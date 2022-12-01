@@ -57,24 +57,28 @@ namespace WebUngTuyenViecLamIT.User
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView1, "Select$" + e.Row.RowIndex);
-            e.Row.ToolTip = "Click xem thông tin chi tiết công việc";
+            //e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView1, "Select$" + e.Row.RowIndex);
+            //e.Row.ToolTip = "Click xem thông tin chi tiết công việc";
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+
         {
-            foreach (GridViewRow row in GridView1.Rows)
-            {
-                if (row.RowIndex == GridView1.SelectedIndex)
-                {
-                    HiddenField jobId = (HiddenField)row.FindControl("hdnJobId");
-                    Response.Redirect("JobList.aspx?id=" + jobId.Value);
-                }
-                else
-                {
-                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                }
-            }
+            //TextBoxUserID.Text = GridView1.SelectedRow.Cells[1].Text;  lấy dữ liệu từ 1 dòng trên gridview
+            //GridView row  in  GridView1.Rows();
+            //GridViewRow row =  GridView1.Rows;
+            //foreach (GridViewRow row in GridView1.Rows)
+            //{
+            //    if (row.RowIndex == GridView1.SelectedIndex)
+            //    {
+            //        HiddenField jobId = (HiddenField)row.FindControl("hdnJobId");
+            //        Response.Redirect("JobList.aspx?id=" + jobId.Value);
+            //    }
+            //    else
+            //    {
+            //        row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+            //    }
+            //}
         }
 
 
@@ -82,6 +86,18 @@ namespace WebUngTuyenViecLamIT.User
         {
             GridView1.PageIndex = e.NewPageIndex;
             ShowAppliedJob();
+        }
+
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "SendQuestion")
+            {
+                Response.Redirect("SendQuestionCompany.aspx?id=" + e.CommandArgument.ToString());
+            }
+            else if (e.CommandName == "ListFeedBackUser")
+            {
+                Response.Redirect("ListFeedBackUser.aspx?id=" + e.CommandArgument.ToString());
+            }
         }
     }
 }

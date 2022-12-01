@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace WebUngTuyenViecLamIT.User
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class _default : System.Web.UI.Page
     {
         SqlConnection con;
         SqlCommand cmd;
@@ -83,5 +83,6 @@ namespace WebUngTuyenViecLamIT.User
             DataList1.DataSource = dt;
             DataList1.DataBind();
         }
+
     }
 }

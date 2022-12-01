@@ -37,7 +37,6 @@ namespace WebUngTuyenViecLamIT.User
         }
 
 
-
         private void ShowJob()
         {
             String query = String.Empty;
@@ -133,5 +132,6 @@ namespace WebUngTuyenViecLamIT.User
                 }
             }
         }
+
     }
 }

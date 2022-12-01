@@ -67,10 +67,19 @@
                                     </asp:RegularExpressionValidator>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Email</label>
                                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Email" TextMode="Email" required></asp:TextBox>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Địa chỉ Gmail không hợp lệ" ForeColor="Red"
+                                        Display="Dynamic" SetFocusOnError="true" Font-Size="Small" ValidationExpression="\w+([-+.’]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="txtEmail">
+                                    </asp:RegularExpressionValidator>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Mã Xác Nhận Email</label>
+                                    <asp:TextBox ID="txtVerification" runat="server" CssClass="form-control" placeholder="Vui lòng nhập mã xác nhận"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -126,6 +135,10 @@
                         <div class="form-group mt-3 mr-10">
                             <asp:Button ID="btnRegister" CssClass="button button-contactForm boxed-btn" runat="server" Text="Đăng Ký"
                                 OnClick="btnRegister_Click" />
+                        </div>
+                         <div class="form-group mt-3 mr-10">
+                            <asp:Button ID="btnTestSendGmail" CssClass="button button-contactForm boxed-btn" runat="server" Text="Lấy Mã Xác Nhận"
+                                OnClick="btnTestSendGmail_Click" />
                         </div>
                         <div class="form-group mt-3">
                             <span class="ClickLink"><a href="../User/Login.aspx">Bạn đã có tài khoản ? Click Here ...</a></span>

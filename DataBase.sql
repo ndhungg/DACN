@@ -20,12 +20,13 @@ create table Account
 (
 	AccountId int primary key identity(1,1) not null,
 	UserName char(100),
-	PassWord nvarchar(100)
+	PassWord nvarchar(100),
+	Status int,
 )
 go
+
 Alter table Account add unique(Username)
 
-Alter table Account add unique(UserName)
 
 
 create table Country
@@ -63,6 +64,8 @@ create table [User]
 )
 go
 
+Alter table [User] add unique(Email)
+
 
 drop table Company
 create table Company 
@@ -81,6 +84,8 @@ create table Company
 	foreign key  (AccountId) references Account(AccountId)
 )
 go
+
+Alter table Company add unique(Email)
 
 
 drop table Jobs
@@ -110,9 +115,57 @@ create table AppliedJobs
 	AppliedJobsId int primary key identity(1,1) not null,
 	JobId int,
 	UserId int,
-	Status bit default 0,
 	foreign key (JobId) references Jobs(JobId),
 	foreign key(UserId) references [User](UserId)
+)
+go
+
+drop table Question
+create table Question
+(
+	QuestionId int primary key identity(1,1) not null,
+	question1 nvarchar(Max),
+	question2 nvarchar(Max),
+	question3 nvarchar(Max),
+	Status bit default 0,
+	CompanyId int,
+	foreign key (CompanyId) references Company(CompanyId),
+	
+)
+go
+
+
+drop table FeedBack
+create table FeedBack 
+(
+	FeedBackId int primary key identity(1,1) not null,
+	feedBack1 nvarchar(Max),
+	feedBack2 nvarchar(Max),
+	feedBack3 nvarchar(Max),
+	AppliedJobsId int,
+	foreign key (AppliedJobsId) references AppliedJobs(AppliedJobsId),
+)
+go
+
+drop table SendQuestions
+create table SendQuestions
+(
+	SendQuestionId int primary key identity(1,1) not null,
+	QuestionId int,
+	AppliedJobsId int,
+	foreign key (QuestionId) references Question(QuestionId),
+	foreign key (AppliedJobsId) references AppliedJobs(AppliedJobsId),
+)
+go
+
+drop table savedata
+create table SaveData
+(
+	SaveDataId int primary key identity(1,1) not null,
+	SendQuestionId int,
+	FeedBackId int,
+	foreign key (SendQuestionId) references SendQuestions(SendQuestionId),
+	foreign key (FeedBackId) references FeedBack(FeedBackId),
 )
 go
 
@@ -120,7 +173,6 @@ go
 insert into Country values(N'Việt Nam')
 insert into Country values(N'Trung Quốc')
 insert into Country values(N'Nhật Bản')
-insert into Country values(N'Mỹ')
 
 
 insert into JobType values(N'Full Time')
@@ -128,53 +180,3 @@ insert into JobType values(N'Part Time')
 insert into JobType values(N'Remote')
 insert into JobType values(N'FreeLance')
 
-
-select *from Contact
-
-select *from Account
-Select * from [User] 
-
-select *from Account 
-select *from Jobs
-select *from Company
-
-
-select *from AppliedJobs
-
-Select Row_Number() over(Order by (Select 1)) as [STT], aj.AppliedJobsId, j.CompanyName, aj.JobId,j.Title,
-u.Mobile,u.Name, u.Email, u.Resume from AppliedJobs aj
-inner join [User] u on aj.UserId = u.UserId
-inner join Jobs j on aj.JobId = j.JobId
-
-select *from Jobs order by CreateDate DESC
-
-Select * from Company
-
-select *from Account
-
-select *from [User]
-select *from Jobs
-select *from AppliedJobs
-
-Select * from AppliedJobs where UserId = 4 and JobId = 23 and Status = 1 and AppliedJobs = ?
-
-Select aj.AppliedJobsId, aj.JobId, aj.Status, aj.UserId
-from AppliedJobs aj
-inner join Jobs j on j.JobId = aj.JobId
-inner join [User] u on u.UserId = aj.UserId
-where u.UserId = 4 and j.JobId = 29 and aj.Status = 1
-
-update AppliedJobs set Status = 0 where AppliedJobsId = 10
-
-Select Row_Number() over(Order by (Select 1)) as [STT], aj.AppliedJobsId, aj.JobId, c.CompanyName, j.Title,
-                      u.Mobile,u.Name, U.Email, u.Resume from AppliedJobs aj
-                      inner join [User] u on aj.UserId = u.UserId
-                      inner join Jobs j on aj.JobId = j.JobId
-					  inner join Company c on c.CompanyId = 1 
-
-Select Row_Number() over(Order by (Select 1)) as [STT], aj.AppliedJobsId, aj.JobId, c.CompanyName, j.Title,
-                      u.Mobile,u.Name, U.Email, u.Resume from AppliedJobs aj
-                      inner join [User] u on aj.UserId = u.UserId
-                      inner join Jobs j on aj.JobId = j.JobId
-					  inner join Company c on c.CompanyId = j.CompanyId
-                      where c.CompanyId = 1 and aj.Status = 0

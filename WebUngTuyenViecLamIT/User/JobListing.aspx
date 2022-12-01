@@ -169,7 +169,7 @@
                                         SelectCommand="SELECT DISTINCT [City] FROM [Company]"></asp:SqlDataSource>
                                 </div>
 
-                                <div class="small-section-tittle2">
+                              <%--  <div class="small-section-tittle2">
                                     <h4>Mức Lương</h4>
                                 </div>
                                 <div class="select-job-items2">
@@ -181,7 +181,7 @@
 
                                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:WebSiteTuyenDungConnectionString %>"
                                         SelectCommand="SELECT DISTINCT [Salary] FROM [Jobs]"></asp:SqlDataSource>
-                                </div>
+                                </div>--%>
 
                                 <!--  Select job items End-->
 

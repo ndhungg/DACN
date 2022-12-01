@@ -78,9 +78,23 @@
                         </li>
 
                         <li>
+                            <a href="QuestionUser.aspx">
+                                <div class="icon"><i class="fas fa-plus-square"></i></div>
+                                <div class="title">Câu hỏi mới</div>
+                            </a>
+                        </li>
+
+                        <li>
                              <a href="JobListCompany.aspx">
                                 <div class="icon"><i class="fas fa-file-alt"></i></div>
                                 <div class="title">Danh sách công việc</div>
+                            </a>
+                        </li>
+
+                          <li>
+                            <a href="ListQuestionUser.aspx">
+                                <div class="icon"><i class="fas fa-file-alt"></i></div>
+                                <div class="title">Danh sách câu hỏi mới</div>
                             </a>
                         </li>
 

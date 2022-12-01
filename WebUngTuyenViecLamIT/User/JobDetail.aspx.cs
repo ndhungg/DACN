@@ -16,7 +16,9 @@ namespace WebUngTuyenViecLamIT.User
         SqlCommand cmd;
         String str = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         SqlDataAdapter sda;
+#pragma warning disable CS0169 // The field 'JobDetail.sdr' is never used
         SqlDataReader sdr;
+#pragma warning restore CS0169 // The field 'JobDetail.sdr' is never used
         DataTable dt,dt1;
         public string jobTitle = string.Empty;
         string appliedJobs = "Ứng Tuyển Ngay";

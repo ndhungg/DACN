@@ -96,7 +96,7 @@ namespace WebUngTuyenViecLamIT.User
             thresholds.Add(120 * minute, "{0} giờ trước");
             thresholds.Add(day, " hôm qua");
             thresholds.Add(day * 2, "{0} ngày trước");
-            thresholds.Add(day * 30, "{0} tuần trước");
+            thresholds.Add(day * 30, "{0} ngày trước");
             thresholds.Add(day * 365, "{0} tháng trước");
             thresholds.Add(long.MaxValue, "{0} năm trước");
             long since = (DateTime.Now.Ticks - theDate.Ticks) / 10000000;
@@ -239,12 +239,6 @@ namespace WebUngTuyenViecLamIT.User
                     isCondition = true;
                 }
 
-                if (ddbSalary.SelectedValue != "0")
-                {
-                    queryList.Add(" j.CompanyId = c.CompanyId and j.Status = 1 and c.Salary like N'%" + ddbSalary.SelectedValue + "%' ");
-                    isCondition = true;
-                }
-
                 jobType = SelectedCheckBox();
 
                 if (jobType != "")
@@ -266,12 +260,12 @@ namespace WebUngTuyenViecLamIT.User
                         subquery += a + " and ";
                     }
                     subquery = subquery.Remove(subquery.LastIndexOf("and"), 3);
-                    query = @"Select j.JobId,j.Title,j.Salary,j.JobType,c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate from Jobs j, Company c where j.Status = 1 and j.CompanyId = c.CompanyId
+                    query = @"Select j.JobId,j.Title,j.JobType,c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate from Jobs j, Company c where j.Status = 1 and j.CompanyId = c.CompanyId
                              " + subquery + " ";
                 }
                 else
                 {
-                    query = @"Select j.JobId,j.Title,j.Salary,j.JobType,c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate from Jobs j, Company c where j.Status = 1 and j.CompanyId = c.CompanyId";
+                    query = @"Select j.JobId,j.Title,j.JobType,c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate from Jobs j, Company c where j.Status = 1 and j.CompanyId = c.CompanyId";
                 }
                 cmd = new SqlCommand(query, con);
                 sda = new SqlDataAdapter(cmd);
@@ -295,7 +289,6 @@ namespace WebUngTuyenViecLamIT.User
         protected void lbReset_Click(object sender, EventArgs e)
         {
             ddlCountry.ClearSelection();
-            ddbSalary.ClearSelection();
             CheckBoxList1.ClearSelection();
             RadioButtonList1.SelectedValue = "0";
             RBSelectedColorChange();
@@ -304,24 +297,6 @@ namespace WebUngTuyenViecLamIT.User
 
         protected void ddbSalary_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddbSalary.SelectedValue != "0")
-            {
-                con = new SqlConnection(str);
-                string query = @"Select j.JobId,j.Title,j.Salary,j.JobType,c.CompanyName,c.CompanyImage,c.City,c.Country,j.CreateDate 
-                                from Jobs j, Company c
-                                where j.CompanyId = c.CompanyId and j.Status = 1 and j.Salary like N'%" + ddbSalary.SelectedValue + "%' ";
-                cmd = new SqlCommand(query, con);
-                sda = new SqlDataAdapter(cmd);
-                dt = new DataTable();
-                sda.Fill(dt);
-                showJobList();
-                RBSelectedColorChange();
-            }
-            else
-            {
-                showJobList();
-                RBSelectedColorChange();
-            }
         }
     }
 }

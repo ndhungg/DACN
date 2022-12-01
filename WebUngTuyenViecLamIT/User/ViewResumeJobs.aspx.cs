@@ -16,6 +16,7 @@ namespace WebUngTuyenViecLamIT.User
         SqlConnection con;
         SqlCommand cmd;
         DataTable dt;
+        SqlDataReader sdr;
         String str = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
 
         protected void Page_PreRender(object sender, EventArgs e)
@@ -56,8 +57,7 @@ namespace WebUngTuyenViecLamIT.User
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            //e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridView1, "Select$" + e.Row.RowIndex);
-            //e.Row.ToolTip = "Click xem thông tin chi tiết công việc";
+         
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -80,14 +80,15 @@ namespace WebUngTuyenViecLamIT.User
         {
             try
             {
+                //ứng tuyển nhưng chưa gửi câu trả lời
                 GridViewRow row = GridView1.Rows[e.RowIndex];
                 int appliedJobsId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
-                String query = @"Delete AppliedJobs where AppliedJobsId = @id";
+                string query = @"Delete AppliedJobs where AppliedJobsId = @id";
                 con = new SqlConnection(str);
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@id", appliedJobsId);
                 con.Open();
-                int r = cmd.ExecuteNonQuery();
+                int r  = cmd.ExecuteNonQuery();
                 if (r > 0)
                 {
                     lblMsg.Text = "Hủy ứng tuyển thành công!!!";
@@ -96,8 +97,124 @@ namespace WebUngTuyenViecLamIT.User
                 else
                 {
                     lblMsg.Text = "Hủy ứng tuyển thất bại!!!";
-                    lblMsg.CssClass = "alert alert-warning";
+                    lblMsg.CssClass = "alert alert-success";
                 }
+                //else
+                //{
+                //string idFeedBack = string.Empty;
+                //string query = @"select f.FeedBackId from AppliedJobs aj
+                //          inner join FeedBack f on f.AppliedJobsId = aj.AppliedJobsId
+                //          where aj.AppliedJobsId = @id";
+                // con = new SqlConnection(str);
+                // cmd = new SqlCommand(query, con);
+                // cmd.Parameters.AddWithValue("@id", appliedJobsId);
+                // con.Open();
+                // sdr = cmd.ExecuteReader();
+                // if (sdr.HasRows)
+                // {
+                //     if (sdr.Read())
+                //     {
+                //         idFeedBack = sdr["FeedBackId"].ToString();
+                //         query = @"select s.SaveDataId from FeedBack f
+                //                 inner join SaveData s on s.FeedBackId = f.FeedBackId
+                //                 where f.FeedBackId = @id";
+                //         con = new SqlConnection(str);
+                //         cmd = new SqlCommand(query, con);
+                //         cmd.Parameters.AddWithValue("@id", idFeedBack);
+                //         con.Open();
+                //         sdr = cmd.ExecuteReader();
+                //         if (sdr.HasRows)
+                //         {
+                //             if (sdr.Read())
+                //             {
+                //                 string idSaveData = string.Empty;
+                //                 idSaveData = sdr["SaveDataId"].ToString();
+                //                 query = @"Delete SaveData where SaveDataId = @id";
+                //                 con = new SqlConnection(str);
+                //                 cmd = new SqlCommand(query, con);
+                //                 cmd.Parameters.AddWithValue("@id", idSaveData);
+                //                 con.Open();
+                //                 sdr = cmd.ExecuteReader();
+                //                 if (sdr.HasRows)
+                //                 {
+                //                     if (sdr.Read())
+                //                     {
+                //                         query = @"Delete FeedBack where FeedBackId = @id";
+                //                         con = new SqlConnection(str);
+                //                         cmd = new SqlCommand(query, con);
+                //                         cmd.Parameters.AddWithValue("@id", idFeedBack);
+                //                         con.Open();
+                //                         con.Open();
+                //                         sdr = cmd.ExecuteReader();
+                //                         if (sdr.HasRows)
+                //                         {
+                //                             query = @"Delete AppliedJobs where AppliedJobsId = @id";
+                //                             con = new SqlConnection(str);
+                //                             cmd = new SqlCommand(query, con);
+                //                             cmd.Parameters.AddWithValue("@id", appliedJobsId);
+                //                             con.Open();
+                //                             int r =  cmd.ExecuteNonQuery();
+                //                             if(r > 0)
+                //                             {
+                //                                 lblMsg.Text = "Hủy ứng tuyển thành công!!!";
+                //                                 lblMsg.CssClass = "alert alert-success";
+                //                             }
+                //                             else
+                //                             {
+                //                                 lblMsg.Text = "Hủy ứng tuyển thất bại!!";
+                //                                 lblMsg.CssClass = "alert alert-warning";
+                //                             }
+                //                         }
+                //                     }
+                //                 }
+                //             }
+                //         }
+                //     else
+                //     {
+                //         query = @"Delete FeedBack where FeedBackId = @id";
+                //         con = new SqlConnection(str);
+                //         cmd = new SqlCommand(query, con);
+                //         cmd.Parameters.AddWithValue("@id", idFeedBack);
+                //         con.Open();
+                //         //con.Open();
+                //         sdr = cmd.ExecuteReader();
+                //         if (sdr.HasRows)
+                //         {
+                //             query = @"Delete AppliedJobs where AppliedJobsId = @id";
+                //             con = new SqlConnection(str);
+                //             cmd = new SqlCommand(query, con);
+                //             cmd.Parameters.AddWithValue("@id", appliedJobsId);
+                //             con.Open();
+                //             int r = cmd.ExecuteNonQuery();
+                //             if (r > 0)
+                //             {
+                //                 lblMsg.Text = "Hủy ứng tuyển thành công!!!";
+                //                 lblMsg.CssClass = "alert alert-success";
+                //             }
+                //             else
+                //             {
+                //                 lblMsg.Text = "Hủy ứng tuyển thất bại!!";
+                //                 lblMsg.CssClass = "alert alert-warning";
+                //             }
+                //         }
+                //     }
+                //     }
+                // }
+                // else
+                // {
+                //     query = @"Delete AppliedJobs where AppliedJobsId = @id";
+                //     con = new SqlConnection(str);
+                //     cmd = new SqlCommand(query, con);
+                //     cmd.Parameters.AddWithValue("@id", appliedJobsId);
+                //     con.Open();
+                //     int r = cmd.ExecuteNonQuery();
+                //     if(r > 0)
+                //     {
+                //         lblMsg.Text = "Hủy ứng tuyển thành công!!!";
+                //         lblMsg.CssClass = "alert alert-success";
+                //     }
+                // }
+
                 GridView1.EditIndex = -1;
                 ShowAppliedJob();
             }
@@ -115,6 +232,14 @@ namespace WebUngTuyenViecLamIT.User
         {
             GridView1.PageIndex = e.NewPageIndex;
             ShowAppliedJob();
+        }
+
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if(e.CommandName == "ListQusetion")
+            {
+                Response.Redirect("ListQuestion.aspx?id=" + e.CommandArgument);
+            }
         }
     }
 }

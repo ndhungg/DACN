@@ -13,7 +13,9 @@ namespace WebUngTuyenViecLamIT.Admin
     public partial class Dashboard : System.Web.UI.Page
     {
         SqlConnection con;
+#pragma warning disable CS0169 // The field 'Dashboard.cmd' is never used
         SqlCommand cmd;
+#pragma warning restore CS0169 // The field 'Dashboard.cmd' is never used
         DataTable dt;
         SqlDataAdapter sda;
         String str = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;

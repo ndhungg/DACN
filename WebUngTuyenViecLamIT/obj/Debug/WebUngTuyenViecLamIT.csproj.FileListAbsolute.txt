@@ -115,4 +115,3 @@ C:\Users\DELL\Desktop\DACN\WebUngTuyenViecLamIT\obj\Debug\WebUngTuyenViecLamIT.c
 C:\Users\DELL\Desktop\DACN\WebUngTuyenViecLamIT\obj\Debug\WebUngTuyenViecLamIT.csproj.CopyComplete
 C:\Users\DELL\Desktop\DACN\WebUngTuyenViecLamIT\obj\Debug\WebUngTuyenViecLamIT.dll
 C:\Users\DELL\Desktop\DACN\WebUngTuyenViecLamIT\obj\Debug\WebUngTuyenViecLamIT.pdb
-C:\Users\DELL\Desktop\DACN\WebUngTuyenViecLamIT\obj\Debug\WebUngTuyenViecLamIT.csproj.AssemblyReference.cache

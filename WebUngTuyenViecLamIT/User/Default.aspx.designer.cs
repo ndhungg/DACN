@@ -11,7 +11,7 @@ namespace WebUngTuyenViecLamIT.User
 {
 
 
-    public partial class Default
+    public partial class _default
     {
 
         /// <summary>
